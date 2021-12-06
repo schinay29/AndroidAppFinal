@@ -20,5 +20,7 @@ public class Pop_up extends AppCompatActivity {
 
         getWindow().setLayout((int)(ancho * 0.85), (int) (alto * 0.5));
 
+        // hola
+
     }
 }
