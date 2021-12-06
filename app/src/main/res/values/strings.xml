@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Hannah App</string>
+    <string name="txt_username">Email</string>
+    <string name="txt_password">Password</string>
+    <string name="txt_olvide_mi_contrase">Olvide mi contraseña</string>
+    <string name="btn_txt_entrar">ENTRAR</string>
+    <string name="btn_txt_registrarme">REGISTRARME</string>
+</resources>

@@ -1,0 +1,98 @@
+{
+  "project_info": {
+    "project_number": "581134993691",
+    "firebase_url": "https://hannahapp-bcdfd-default-rtdb.firebaseio.com",
+    "project_id": "hannahapp-bcdfd",
+    "storage_bucket": "hannahapp-bcdfd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581134993691:android:17b629070c459dbd57abbe",
+        "android_client_info": {
+          "package_name": "xyz.hannah.apphannah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581134993691-o1934qhdqd3c08sihtl3qgfgi8ji7die.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALuWpPDfULf53YQ-E5KKI0JA7BxP4NYwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581134993691-o1934qhdqd3c08sihtl3qgfgi8ji7die.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581134993691:android:5f6e705e91eb5d7457abbe",
+        "android_client_info": {
+          "package_name": "xyz.hannah.hannah"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581134993691-o1934qhdqd3c08sihtl3qgfgi8ji7die.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALuWpPDfULf53YQ-E5KKI0JA7BxP4NYwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581134993691-o1934qhdqd3c08sihtl3qgfgi8ji7die.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:581134993691:android:82d9170d842cfeaa57abbe",
+        "android_client_info": {
+          "package_name": "xyz.hannah.hannahapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "581134993691-o1934qhdqd3c08sihtl3qgfgi8ji7die.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALuWpPDfULf53YQ-E5KKI0JA7BxP4NYwk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "581134993691-o1934qhdqd3c08sihtl3qgfgi8ji7die.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
