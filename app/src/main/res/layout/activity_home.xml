@@ -33,7 +33,7 @@
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
         android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -51,70 +51,217 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-
                 <ImageView
-                    android:id="@+id/imagen0"
+                    android:id="@+id/img_rueda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="5dp"
+                    android:layout_marginBottom="3dp"
                     android:onClick="showDetails"
-                    android:src="@mipmap/ic_donut" />
+                    android:contentDescription="@string/rueda"
+                    android:src="@mipmap/ic_rueda" />
 
                 <TextView
-                    android:id="@+id/textView0"
+                    android:id="@+id/txt_rueda"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="7dp"
-                    android:text="TextView123" />
+                    android:text="@string/rueda"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img_bateria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="3dp"
+                    android:onClick="showDetails"
+                    android:contentDescription="@string/bateria"
+                    android:src="@mipmap/ic_bateria" />
+                <TextView
+                    android:id="@+id/txt_bateria"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/bateria"
+                    android:textAlignment="center"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img_luces"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="3dp"
+                    android:onClick="showDetails"
+                    android:contentDescription="@string/luces"
+                    android:src="@mipmap/ic_luces" />
+                <TextView
+                    android:id="@+id/txt_luces"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/luces"
+                    android:textAlignment="center"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img_frenos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="3dp"
+                    android:onClick="showDetails"
+                    android:contentDescription="@string/frenos"
+                    android:src="@mipmap/ic_frenos" />
+                <TextView
+                    android:id="@+id/txt_frenos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/frenos"
+                    android:textAlignment="center"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img_catalizador"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="3dp"
+                    android:onClick="showDetails"
+                    android:contentDescription="@string/catalizador"
+                    android:src="@mipmap/ic_catalizador" />
+                <TextView
+                    android:id="@+id/txt_catalizador"
+                    android:layout_width="98dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/catalizador"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
 
 
             </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imagen1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@mipmap/ic_donut" />
 
-            <ImageView
-                android:id="@+id/imagen2"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@mipmap/ic_donut" />
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img_amortiguador"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="3dp"
+                    android:onClick="showDetails"
+                    android:contentDescription="@string/amortiguador"
+                    android:src="@mipmap/ic_amortiguador" />
+                <TextView
+                    android:id="@+id/txt_amortiguador"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/amortiguador"
+                    android:textAlignment="center"
+                    android:textSize="12sp"/>
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imagen3"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@mipmap/ic_donut" />
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img_aceite"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="3dp"
+                    android:onClick="showDetails"
+                    android:contentDescription="@string/aceite_lubricante"
+                    android:src="@mipmap/ic_aceite_lubricante" />
+                <TextView
+                    android:id="@+id/txt_aceite"
+                    android:layout_width="98dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aceite_lubricante"
+                    android:textAlignment="center"
+                    android:textSize="12sp" />
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imagen4"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@mipmap/ic_donut" />
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img_filtro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="3dp"
+                    android:onClick="showDetails"
+                    android:contentDescription="@string/filtro"
+                    android:src="@mipmap/ic_filtro" />
+                <TextView
+                    android:id="@+id/txt_filtro"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/filtro"
+                    android:textAlignment="center"
+                    android:textSize="12sp"/>
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imagen5"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@mipmap/ic_donut" />
+                android:orientation="vertical">
+                <ImageView
+                    android:id="@+id/img_correa_distribucion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginBottom="3dp"
+                    android:onClick="showDetails"
+                    android:contentDescription="@string/correa_distribucion"
+                    android:src="@mipmap/ic_correoa_de_distribucion" />
+                <TextView
+                    android:id="@+id/txt_correa_distribucion"
+                    android:layout_width="98dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/correa_distribucion"
+                    android:textAlignment="center"
+                    android:textSize="12sp"/>
+            </LinearLayout>
 
-            <ImageView
-                android:id="@+id/imagen6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:src="@mipmap/ic_donut" />
+
+
+
+
 
         </LinearLayout>
 

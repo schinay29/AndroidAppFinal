@@ -10,13 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HannahApp">
         <activity
+            android:name=".activity_addCar"
+            android:exported="true" />
+        <activity
             android:name=".Pop_up"
-            android:theme="@style/Theme.HannahApp.TemaPopup"
-
-            android:exported="false" />
+            android:exported="false"
+            android:theme="@style/Theme.HannahApp.TemaPopup" />
         <activity
             android:name=".activity_home"
-
             android:exported="false" />
         <activity
             android:name=".activity_register"

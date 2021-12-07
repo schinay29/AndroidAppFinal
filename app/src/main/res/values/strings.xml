@@ -5,4 +5,13 @@
     <string name="txt_olvide_mi_contrase">Olvide mi contraseña</string>
     <string name="btn_txt_entrar">ENTRAR</string>
     <string name="btn_txt_registrarme">REGISTRARME</string>
+    <string name="rueda">rueda</string>
+    <string name="bateria">bateria</string>
+    <string name="luces">luces</string>
+    <string name="frenos">frenos</string>
+    <string name="catalizador">Sistema de escape y catalizadores</string>
+    <string name="amortiguador">amortiguadores</string>
+    <string name="aceite_lubricante">aceite lubricante</string>
+    <string name="filtro">filtros</string>
+    <string name="correa_distribucion">correa de distribucion</string>
 </resources>

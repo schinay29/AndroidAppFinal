@@ -1,0 +1,451 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity_addCar">
+
+
+    <TextView
+        android:id="@+id/txt_car_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Detalles del coche"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_car_details">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/txt_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Modelo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_car_details" />
+
+            <EditText
+                android:id="@+id/cp_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txt_modelo"
+                app:layout_constraintStart_toEndOf="@+id/txt_modelo" />
+
+            <EditText
+                android:id="@+id/cp_modelo2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txt_kilometros"
+                app:layout_constraintStart_toEndOf="@+id/txt_kilometros" />
+
+            <TextView
+                android:id="@+id/txt_kilometros"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Kilometros"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_modelo" />
+
+            <TextView
+                android:id="@+id/label_bateria_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Bateria modelo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_kilometros" />
+
+            <EditText
+                android:id="@+id/cp_bateria_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_bateria_modelo"
+                app:layout_constraintStart_toEndOf="@+id/label_bateria_modelo" />
+
+            <TextView
+                android:id="@+id/label_bateria_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Bateria fecha"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_bateria_modelo" />
+
+            <EditText
+                android:id="@+id/cp_bateria_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_bateria_fecha"
+                app:layout_constraintStart_toEndOf="@+id/label_bateria_fecha" />
+
+            <TextView
+                android:id="@+id/label_luces_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Luces modelo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_bateria_fecha" />
+
+            <EditText
+                android:id="@+id/cp_luces_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_luces_modelo"
+                app:layout_constraintStart_toEndOf="@+id/label_luces_modelo" />
+
+            <TextView
+                android:id="@+id/label_luces_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Luces fecha"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_luces_modelo" />
+
+            <EditText
+                android:id="@+id/cp_luces_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_luces_fecha"
+                app:layout_constraintStart_toEndOf="@+id/label_luces_fecha" />
+
+            <TextView
+                android:id="@+id/label_filtros_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Filtros modelo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_luces_fecha" />
+
+            <EditText
+                android:id="@+id/cp_filtros_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_filtros_modelo"
+                app:layout_constraintStart_toEndOf="@+id/label_filtros_modelo" />
+
+            <TextView
+                android:id="@+id/label_filtros_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Filtros fecha"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_filtros_modelo" />
+
+            <EditText
+                android:id="@+id/cp_filtros_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_filtros_fecha"
+                app:layout_constraintStart_toEndOf="@+id/label_filtros_fecha" />
+
+            <TextView
+                android:id="@+id/label_frenos_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Frenos modelo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_filtros_fecha" />
+
+            <EditText
+                android:id="@+id/cp_frenos_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_frenos_modelo"
+                app:layout_constraintStart_toEndOf="@+id/label_frenos_modelo" />
+
+            <TextView
+                android:id="@+id/label_frenos_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Frenos fecha"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_frenos_modelo" />
+
+            <EditText
+                android:id="@+id/cp_frenos_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_frenos_fecha"
+                app:layout_constraintStart_toEndOf="@+id/label_frenos_fecha" />
+
+            <TextView
+                android:id="@+id/label_neumaticos_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Neumaticos modelo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_frenos_fecha" />
+
+            <EditText
+                android:id="@+id/cp_neumaticos_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_neumaticos_modelo"
+                app:layout_constraintStart_toEndOf="@+id/label_neumaticos_modelo" />
+
+            <TextView
+                android:id="@+id/label_neumaticos_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Neumaticos fecha"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_neumaticos_modelo" />
+
+            <EditText
+                android:id="@+id/cp_neumaticos_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_neumaticos_fecha"
+                app:layout_constraintStart_toEndOf="@+id/label_neumaticos_fecha" />
+
+            <TextView
+                android:id="@+id/label_amortiguador_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Amortiguadores modelo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_neumaticos_fecha" />
+
+            <EditText
+                android:id="@+id/cp_amortiguador_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_amortiguador_modelo"
+                app:layout_constraintStart_toEndOf="@+id/label_amortiguador_modelo" />
+
+            <TextView
+                android:id="@+id/label_amortiguador_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Amortiguadores fecha"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_amortiguador_modelo" />
+
+            <EditText
+                android:id="@+id/cp_amortiguador_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_amortiguador_fecha"
+                app:layout_constraintStart_toEndOf="@+id/label_amortiguador_fecha" />
+
+            <TextView
+                android:id="@+id/label_correaDistribucion_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Correa de distribucion modelo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_amortiguador_fecha" />
+
+            <EditText
+                android:id="@+id/cp_correaDistribucion_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_correaDistribucion_modelo"
+                app:layout_constraintStart_toEndOf="@+id/label_correaDistribucion_modelo" />
+
+            <TextView
+                android:id="@+id/label_correaDistribucion_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Correa de distribucion fecha"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_correaDistribucion_modelo" />
+
+            <EditText
+                android:id="@+id/cp_correaDistribucion_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_correaDistribucion_fecha"
+                app:layout_constraintStart_toEndOf="@+id/label_correaDistribucion_fecha" />
+
+            <TextView
+                android:id="@+id/label_aceite_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Aceite lubricante modelo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_correaDistribucion_fecha" />
+
+            <EditText
+                android:id="@+id/cp_aceite_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_aceite_modelo"
+                app:layout_constraintStart_toEndOf="@+id/label_aceite_modelo" />
+
+            <TextView
+                android:id="@+id/label_aceite_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Aceite lubricante fecha"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_aceite_modelo" />
+
+            <EditText
+                android:id="@+id/cp_aceite_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_aceite_fecha"
+                app:layout_constraintStart_toEndOf="@+id/label_aceite_fecha" />
+
+            <TextView
+                android:id="@+id/label_sistemaEscape_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Catalizador modelo"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_aceite_fecha" />
+
+            <EditText
+                android:id="@+id/cp_sistemaEscape_modelo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_sistemaEscape_modelo"
+                app:layout_constraintStart_toEndOf="@+id/label_sistemaEscape_modelo" />
+
+            <TextView
+                android:id="@+id/label_sistemaEscape_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                android:text="Sistema Escape fecha"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/label_sistemaEscape_modelo" />
+
+            <EditText
+                android:id="@+id/cp_sistemaEscape_fecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintBaseline_toBaselineOf="@+id/label_sistemaEscape_fecha"
+                app:layout_constraintStart_toEndOf="@+id/label_sistemaEscape_fecha" />
+
+            <Button
+                android:id="@+id/btn_registrarme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="32dp"
+                android:onClick="añadirDatos"
+                android:text="REGISTRARME"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cp_sistemaEscape_fecha" />
+
+        </LinearLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
