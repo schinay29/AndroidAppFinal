@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".activity_addCar">
 
+
+
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
@@ -97,17 +99,96 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/background_content_form"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
+        android:background="@drawable/background_content_form"
         android:elevation="5dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+
+        <ImageView
+            android:id="@+id/correaDistribucion"
+            android:layout_width="116dp"
+            android:layout_height="134dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="4dp"
+            android:contentDescription="@string/rueda"
+            android:src="@mipmap/ic_correoa_de_distribucion" />
+
+        <TextView
+            android:id="@+id/modelo_cDistribucion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/correaDistribucion"
+            android:text="Modelo"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/ultVez_cDistribucion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cp_modelocDistribucion"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/correaDistribucion"
+            android:text="Ultima vez cambiado:"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/cp_modelocDistribucion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/modelo_cDistribucion"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="-9dp"
+            android:layout_marginEnd="25dp"
+            android:layout_toEndOf="@+id/correaDistribucion"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_cDistribucion" />
+
+        <EditText
+            android:id="@+id/cp_ultVezcDistribucion"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@+id/ultVez_cDistribucion"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="-9dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/correaDistribucion"
+            android:ems="10"
+            android:hint="dd/mm/aa"
+            android:inputType="date"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_cDistribucion" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/background_content_form"
+        android:elevation="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.02"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
 
 
         <ImageView
@@ -171,6 +252,86 @@
             android:textSize="14sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_bateria" />
     </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/background_content_form"
+        android:elevation="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
+
+
+        <ImageView
+            android:id="@+id/frenos"
+            android:layout_width="116dp"
+            android:layout_height="134dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="4dp"
+            android:contentDescription="@string/rueda"
+            android:src="@mipmap/ic_frenos" />
+
+        <TextView
+            android:id="@+id/modelo_frenos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/frenos"
+            android:text="Modelo"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/ultVez_frenos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cp_modeloFrenos"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/frenos"
+            android:text="Ultima vez cambiado:"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/cp_modeloFrenos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/modelo_frenos"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="-9dp"
+            android:layout_marginEnd="25dp"
+            android:layout_toEndOf="@+id/frenos"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_frenos" />
+
+        <EditText
+            android:id="@+id/cp_ultVezFrenos"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@+id/ultVez_frenos"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="-9dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/frenos"
+            android:ems="10"
+            android:hint="dd/mm/aa"
+            android:inputType="date"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_frenos" />
+    </RelativeLayout>
+
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
