@@ -1,4 +1,6 @@
 package xyz.hannah.hannahapp.ClasesAyuda;
 
-public class Bateria extends PartOfCar{
+import java.io.Serializable;
+
+public class Bateria extends PartOfCar {
 }

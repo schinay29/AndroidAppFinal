@@ -1,10 +1,14 @@
 package xyz.hannah.hannahapp.ClasesAyuda;
 
+import java.io.Serializable;
 import java.sql.Date;
 
 public class PartOfCar {
     protected String modelo;
     protected Date ultFechaCambio;
+
+
+
 
     public Date getUltFechaCambio() {
         return ultFechaCambio;

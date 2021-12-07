@@ -1,4 +1,6 @@
 package xyz.hannah.hannahapp.ClasesAyuda;
 
-public class Amortiguador extends PartOfCar{
+import java.io.Serializable;
+
+public class Amortiguador extends PartOfCar {
 }

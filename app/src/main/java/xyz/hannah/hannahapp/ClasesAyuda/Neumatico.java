@@ -1,6 +1,8 @@
 package xyz.hannah.hannahapp.ClasesAyuda;
 
-public class Neumatico extends  PartOfCar{
+import java.io.Serializable;
+import java.sql.Date;
 
+public class Neumatico  extends  PartOfCar{
 
 }
