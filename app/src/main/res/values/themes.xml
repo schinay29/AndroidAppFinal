@@ -21,4 +21,10 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+    <style name="Theme.HannahApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.HannahApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.HannahApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

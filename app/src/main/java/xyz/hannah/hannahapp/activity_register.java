@@ -41,10 +41,12 @@ public class activity_register extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     Toast.makeText(activity_register.this, "Usuario creado correctamente", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(activity_register.this, activity_home.class));
+                    startActivity(new Intent(activity_register.this, activity_carInfo.class));
                 }
             }
         });
+
+
 
 
 

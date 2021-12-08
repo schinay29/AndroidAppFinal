@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,19 +8,27 @@
 
 
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Partes del coche"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <RelativeLayout
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="Partes del coche"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +53,7 @@
             android:src="@mipmap/ic_rueda" />
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/modelo_rueda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -56,10 +64,10 @@
             android:textSize="15sp" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/ultVez_rueda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/editTextTextPersonName1"
+            android:layout_below="@+id/cp_modeloRueda"
             android:layout_marginStart="3dp"
             android:layout_marginTop="9dp"
             android:layout_toEndOf="@+id/rueda"
@@ -67,11 +75,11 @@
             android:textSize="15sp" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName1"
+            android:id="@+id/cp_modeloRueda"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:layout_below="@+id/textView6"
+            android:layout_below="@+id/modelo_rueda"
             android:layout_marginStart="3dp"
             android:layout_marginTop="-9dp"
             android:layout_marginEnd="25dp"
@@ -79,13 +87,13 @@
             android:ems="10"
             android:inputType="text"
             android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView6" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_rueda" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/cp_ultVezRueda"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_below="@+id/textView7"
+            android:layout_below="@+id/ultVez_rueda"
             android:layout_marginStart="3dp"
             android:layout_marginTop="-9dp"
             android:layout_marginEnd="25dp"
@@ -95,7 +103,7 @@
             android:hint="dd/mm/aa"
             android:inputType="date"
             android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView7" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_rueda" />
     </RelativeLayout>
 
     <RelativeLayout
@@ -254,6 +262,7 @@
     </RelativeLayout>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -274,7 +283,7 @@
             android:layout_height="134dp"
             android:layout_marginHorizontal="12dp"
             android:layout_marginVertical="4dp"
-            android:contentDescription="@string/rueda"
+            android:contentDescription="@string/frenos"
             android:src="@mipmap/ic_frenos" />
 
         <TextView
@@ -330,8 +339,252 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_frenos" />
     </RelativeLayout>
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/background_content_form"
+        android:elevation="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4">
 
 
+        <ImageView
+            android:id="@+id/luces"
+            android:layout_width="116dp"
+            android:layout_height="134dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="4dp"
+            android:contentDescription="@string/luces"
+            android:src="@mipmap/ic_luces" />
+
+        <TextView
+            android:id="@+id/modelo_luces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/luces"
+            android:text="Modelo"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/ultVez_luces"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cp_modeloLuces"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/luces"
+            android:text="Ultima vez cambiado:"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/cp_modeloLuces"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/modelo_luces"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="-9dp"
+            android:layout_marginEnd="25dp"
+            android:layout_toEndOf="@+id/luces"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_luces" />
+
+        <EditText
+            android:id="@+id/cp_ultVezLuces"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@+id/ultVez_luces"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="-9dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/luces"
+            android:ems="10"
+            android:hint="dd/mm/aa"
+            android:inputType="date"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_luces" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/background_content_form"
+        android:elevation="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout5">
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <ImageView
+            android:id="@+id/catalizador"
+            android:layout_width="116dp"
+            android:layout_height="134dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="4dp"
+            android:contentDescription="@string/catalizador"
+            android:src="@mipmap/ic_catalizador" />
+
+        <TextView
+            android:id="@+id/modelo_catalizador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/catalizador"
+            android:text="Modelo"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/ultVez_catalizador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cp_modeloCatalizador"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/catalizador"
+            android:text="Ultima vez cambiado:"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/cp_modeloCatalizador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/modelo_catalizador"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="-9dp"
+            android:layout_marginEnd="25dp"
+            android:layout_toEndOf="@+id/catalizador"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_catalizador" />
+
+        <EditText
+            android:id="@+id/cp_ultVezCatalizador"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@+id/ultVez_catalizador"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="-9dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/catalizador"
+            android:ems="10"
+            android:hint="dd/mm/aa"
+            android:inputType="date"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_catalizador" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/background_content_form"
+        android:elevation="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout6">
+
+
+        <ImageView
+            android:id="@+id/amortiguador"
+            android:layout_width="116dp"
+            android:layout_height="134dp"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginVertical="4dp"
+            android:contentDescription="@string/amortiguador"
+            android:src="@mipmap/ic_amortiguador" />
+
+        <TextView
+            android:id="@+id/modelo_amortiguador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/amortiguador"
+            android:text="Modelo"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/ultVez_amortiguador"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cp_modeloAmortiguador"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="9dp"
+            android:layout_toEndOf="@+id/amortiguador"
+            android:text="Ultima vez cambiado:"
+            android:textSize="15sp" />
+
+        <EditText
+            android:id="@+id/cp_modeloAmortiguador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/modelo_amortiguador"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="-9dp"
+            android:layout_marginEnd="25dp"
+            android:layout_toEndOf="@+id/amortiguador"
+            android:ems="10"
+            android:inputType="text"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_amortiguador" />
+
+        <EditText
+            android:id="@+id/cp_ultVezAmortiguador"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_below="@+id/ultVez_amortiguador"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="-9dp"
+            android:layout_marginEnd="25dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@+id/amortiguador"
+            android:ems="10"
+            android:hint="dd/mm/aa"
+            android:inputType="date"
+            android:textSize="14sp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_amortiguador" />
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/btn_siguiente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:onClick="añadirDatos"
+        android:text="SIGUIENTE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout7" />
+
+    </LinearLayout>
+
+</ScrollView>

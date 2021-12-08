@@ -32,7 +32,7 @@ public class activity_home extends AppCompatActivity {
 
     public void add(View view){
 
-        startActivity(new Intent(activity_home.this, activity_addCar.class));
+        startActivity(new Intent(activity_home.this, activity_profile.class));
 
     }
 
