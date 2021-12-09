@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ public class activity_profile extends AppCompatActivity {
     private ImageView imagen;
     private DatabaseReference databaseReference;
     private TextView mNombre, mKilometros, mModelo;
+    private EditText mEmail, mTelefono, mFecha;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,9 @@ public class activity_profile extends AppCompatActivity {
         mNombre = findViewById(R.id.userName);
         mModelo = findViewById(R.id.cocheModelo);
         mKilometros = findViewById(R.id.cocheKilometro);
+        mEmail = findViewById(R.id.cpEmail);
+        mTelefono = findViewById(R.id.cpTelefono);
+        mFecha = findViewById(R.id.cpFechaNacimiento);
         cambiarDatos();
 
 
@@ -50,6 +55,7 @@ public class activity_profile extends AppCompatActivity {
                     mNombre.setText(snapshot.child(user.getUid()).child("nombre").getValue().toString().toUpperCase());
                     mModelo.setText(snapshot.child(user.getUid()).child("Coche").child("modelo").getValue().toString());
                     mKilometros.setText(snapshot.child(user.getUid()).child("Coche").child("kilometros").getValue().toString() + "km");
+                    mEmail.setText(user.getEmail());
                 }
             }
 
@@ -74,5 +80,16 @@ public class activity_profile extends AppCompatActivity {
             Uri path = data.getData();
             imagen.setImageURI(path);
         }
+    }
+
+    public void editarCampo(View view) {
+        int vista = view.getId();
+
+        if(vista == R.id.editFecha){
+            mFecha.setEnabled(true);
+        }else if(vista == R.id.editTelefono){
+            mTelefono.setEnabled(true);
+        }
+
     }
 }

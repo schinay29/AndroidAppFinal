@@ -79,4 +79,93 @@
             android:text="numKilometro" />
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/txtEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="29dp"
+        android:text="Correo electrónico"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3" />
+
+    <EditText
+        android:id="@+id/cpEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:enabled="false"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
+    <TextView
+        android:id="@+id/txtTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="24dp"
+        android:text="Teléfono"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cpEmail" />
+
+    <EditText
+        android:id="@+id/cpTelefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:textSize="16sp"
+        android:enabled="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtTelefono" />
+
+    <ImageView
+        android:id="@+id/editTelefono"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="editarCampo"
+        android:elevation="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cpTelefono"
+        app:layout_constraintEnd_toEndOf="@+id/cpTelefono"
+        app:srcCompat="@drawable/ic_edit" />
+
+    <TextView
+        android:id="@+id/txtFechaNacimento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="24dp"
+        android:text="Fecha de Nacimiento"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cpTelefono" />
+
+    <EditText
+        android:id="@+id/cpFechaNacimiento"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="48dp"
+        android:textSize="16sp"
+        android:enabled="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtFechaNacimento" />
+
+    <ImageView
+        android:id="@+id/editFecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="10dp"
+        android:onClick="editarCampo"
+        android:elevation="6dp"
+        app:layout_constraintBottom_toBottomOf="@+id/cpFechaNacimiento"
+        app:layout_constraintEnd_toEndOf="@+id/cpFechaNacimiento"
+        app:srcCompat="@drawable/ic_edit" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
