@@ -115,7 +115,7 @@ public class activity_addCar extends AppCompatActivity {
         coche.setLuces(luces);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference.child("Usuario").child(user.getUid()).child("Coches").child("Coche: " + coche.getModelo()).setValue(coche);
+        databaseReference.child("Usuario").child(user.getUid()).child("Coche").setValue(coche);
 
 
         Toast.makeText(this, "Partes del Coche Agregado", Toast.LENGTH_SHORT).show();

@@ -245,9 +245,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
+                    android:onClick="showDetails"
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginBottom="3dp"
-                    android:onClick="showDetails"
                     android:contentDescription="@string/correa_distribucion"
                     android:src="@mipmap/ic_correoa_de_distribucion" />
                 <TextView
