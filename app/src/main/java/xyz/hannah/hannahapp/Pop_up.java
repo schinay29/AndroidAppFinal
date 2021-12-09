@@ -8,7 +8,10 @@ import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,32 +28,19 @@ public class Pop_up extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private ImageView mImagen;
+    private TextView mNombre;
+    private EditText mModelo, mUltVez;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up);
 
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-
-        databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
-                    Toast.makeText(Pop_up.this, snapshot.child(user.getUid()).child("Coche").child("modelo").getValue().toString(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-
+        mImagen = findViewById(R.id.img_icon);
+        mNombre = findViewById(R.id.txtNombre);
+        mModelo = findViewById(R.id.cp_modelo);
+        mUltVez = findViewById(R.id.cp_ultVez);
         obtenerDatos();
-
 
 
         DisplayMetrics medidasVentana = new DisplayMetrics();
@@ -65,25 +55,26 @@ public class Pop_up extends AppCompatActivity {
 
     private void obtenerDatos(){
         Intent intent = getIntent();
-        //Bitmap bitmap = (Bitmap) intent.getParcelableExtra("imagen");
-
-        mImagen = findViewById(R.id.img_icon);
-
-        //mImagen.setImageBitmap(bitmap);
-
-
-        //mImagen.setImageResource(intent.getIntExtra("imagen"));
 
         Bundle parametros = this.getIntent().getExtras();
         int imagen =  parametros.getInt("imagen");
+        String nombre = parametros.getString("nombre");
+        String modelo = parametros.getString("modelo");
+        //String ultVez = parametros.getString("ultVez");
 
         mImagen.setImageResource(imagen);
+        mNombre.setText(nombre);
+        mModelo.setText(modelo);
+        //mUltVez.setText(ultVez);
 
-        //Drawable d = mImagen.getDrawable();
+    }
 
+    public void activarCampos(View view) {
+        mModelo.setEnabled(true);
+        mUltVez.setEnabled(true);
+    }
 
-
-
-
+    public void closeLayout(View view) {
+        finish();
     }
 }
