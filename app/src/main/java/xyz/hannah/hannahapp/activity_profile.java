@@ -7,11 +7,16 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -23,6 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 public class activity_profile extends AppCompatActivity {
 
     private ImageView imagen;
+    BottomNavigationView bottomNavigation;
     private DatabaseReference databaseReference;
     private TextView mNombre, mKilometros, mModelo;
     private EditText mEmail, mTelefono, mFecha;
@@ -32,6 +38,7 @@ public class activity_profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
+
         imagen = findViewById(R.id.img_profile);
         mNombre = findViewById(R.id.userName);
         mModelo = findViewById(R.id.cocheModelo);
@@ -39,6 +46,36 @@ public class activity_profile extends AppCompatActivity {
         mEmail = findViewById(R.id.cpEmail);
         mTelefono = findViewById(R.id.cpTelefono);
         mFecha = findViewById(R.id.cpFechaNacimiento);
+        bottomNavigation = findViewById(R.id.bottom_nav);
+
+        bottomNavigation.setSelectedItemId(R.id.nav_profile);
+
+        bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.nav_home:
+                        Intent intent = new Intent(activity_profile.this, activity_home.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(intent);
+                        break;
+
+                    case R.id.nav_add:
+                        //startActivity(new Intent(activity_profile.this, activity_home.class));
+                        break;
+
+                    case R.id.nav_profile:
+
+                        break;
+                }
+
+                return true;
+            }
+        });
+
+
+
         cambiarDatos();
 
 

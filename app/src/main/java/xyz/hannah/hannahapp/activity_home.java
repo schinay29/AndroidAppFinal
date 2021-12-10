@@ -11,6 +11,7 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewParent;
 import android.widget.EditText;
@@ -19,6 +20,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +38,7 @@ public class activity_home extends AppCompatActivity {
     private ImageView imagen;
     private LinearLayout linearLayout;
     private DatabaseReference databaseReference;
+    BottomNavigationView bottomNavigation;
     private String texto, modelo, ultVez;
 
 
@@ -42,6 +46,31 @@ public class activity_home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        bottomNavigation = findViewById(R.id.bottom_nav);
+
+        bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                switch (item.getItemId()){
+                    case R.id.nav_home:
+                        break;
+
+                    case R.id.nav_add:
+                        //startActivity(new Intent(activity_home.this, activity_home.class));
+                        break;
+
+                    case R.id.nav_profile:
+                        Intent intent = new Intent(activity_home.this, activity_profile.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        startActivity(intent);
+                        break;
+                }
+
+                return true;
+            }
+        });
 
 
     }

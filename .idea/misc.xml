@@ -26,16 +26,21 @@
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/drawable/ic_edit.xml" value="0.2703125" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/drawable/ic_filtro_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/drawable/ic_frenos_background.xml" value="0.2703125" />
+        <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/drawable/ic_home.xml" value="0.2703125" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/drawable/ic_rueda_background.xml" value="0.2703125" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/drawable/ic_user.xml" value="0.26615384615384613" />
+        <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/drawable/item_selector.xml" value="0.1638888888888889" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/drawable/overbox_details.xml" value="0.2703125" />
+        <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/layout/activity_add.xml" value="0.16799999999999998" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/layout/activity_add_car.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/layout/activity_car_info.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/layout/activity_home.xml" value="0.4" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/layout/activity_main.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/layout/activity_pop_up.xml" value="0.25416666666666665" />
-        <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/layout/activity_profile.xml" value="0.4" />
+        <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/layout/activity_profile.xml" value="0.264" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/layout/activity_register.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/layout/fragment_home.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/menu/bottom_menu.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/mipmap-anydpi-v26/ic_camara_round.xml" value="0.2703125" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/mipmap-anydpi-v26/ic_frenos.xml" value="0.2703125" />
         <entry key="..\:/Users/Hannah/AndroidStudioProjects/AndroidAppFinal/app/src/main/res/mipmap-anydpi-v26/ic_luces_round.xml" value="0.2703125" />

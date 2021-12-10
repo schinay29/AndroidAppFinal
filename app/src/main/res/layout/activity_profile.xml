@@ -85,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="29dp"
+        android:layout_marginTop="35dp"
         android:text="Correo electrónico"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
@@ -166,6 +166,23 @@
         app:layout_constraintBottom_toBottomOf="@+id/cpFechaNacimiento"
         app:layout_constraintEnd_toEndOf="@+id/cpFechaNacimiento"
         app:srcCompat="@drawable/ic_edit" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_margin="30dp"
+        android:elevation="3dp"
+        app:itemRippleColor="@android:color/transparent"
+        app:itemIconSize="30dp"
+        app:labelVisibilityMode="unlabeled"
+        android:background="@drawable/round_content"
+        app:itemIconTint="@drawable/item_selector"
+        app:menu="@menu/bottom_menu"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
