@@ -7,29 +7,16 @@
     tools:context=".activity_home">
 
 
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="248dp"
-        android:layout_height="206dp"
-        android:layout_marginTop="64dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="-260dp"
         android:drawableRight="@drawable/ic_mantenimiento"
         android:text="Mantenimiento"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
     <HorizontalScrollView
         android:id="@+id/horizontalScrollView"
@@ -270,17 +257,6 @@
 
     </HorizontalScrollView>
 
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:text="Registro de gastos"
-        android:drawableRight="@drawable/ic_estadisticas"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
         android:layout_width="match_parent"
@@ -298,6 +274,16 @@
         app:itemIconTint="@drawable/item_selector"
         app:menu="@menu/bottom_menu"/>
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="648dp"
+        android:layout_height="730dp"
+        android:layout_marginTop="-180dp"
+        android:layout_marginEnd="-240dp"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@mipmap/ic_coche1_foreground" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

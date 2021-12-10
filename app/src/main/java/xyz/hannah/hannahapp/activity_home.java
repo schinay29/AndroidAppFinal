@@ -52,17 +52,27 @@ public class activity_home extends AppCompatActivity {
         bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+                Intent intent;
                 switch (item.getItemId()){
                     case R.id.nav_home:
+
                         break;
 
                     case R.id.nav_add:
-                        //startActivity(new Intent(activity_home.this, activity_home.class));
+                        intent = new Intent(activity_home.this,Pop_up.class);
+
+                        Bundle extras = new Bundle();
+                        extras.putInt("imagen", R.mipmap.ic_coche0_foreground);
+                        extras.putString("nombre", "Actualizar Datos");
+                        extras.putString("modelo", obtenerDatos());
+                        //extras.putString("ultVez", ultVez);
+
+                        intent.putExtras(extras);
+                        startActivity(intent);
                         break;
 
                     case R.id.nav_profile:
-                        Intent intent = new Intent(activity_home.this, activity_profile.class);
+                        intent = new Intent(activity_home.this, activity_profile.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent);
                         break;
@@ -112,6 +122,25 @@ public class activity_home extends AppCompatActivity {
                 if(snapshot.exists()){
                     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                     texto = snapshot.child(user.getUid()).child("Coche").child(nombreParte).child("ultFechaCambio").getValue().toString();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return texto;
+    }
+
+    private String obtenerDatos(){
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    texto = snapshot.child(user.getUid()).child("Coche").child("modelo").getValue().toString();
                 }
             }
 
