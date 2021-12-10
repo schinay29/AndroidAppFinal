@@ -6,16 +6,14 @@ import java.util.Date;
 
 public class PartOfCar {
     protected String modelo;
-    protected Date ultFechaCambio;
+    protected String ultFechaCambio;
 
 
-
-
-    public Date getUltFechaCambio() {
+    public String getUltFechaCambio() {
         return ultFechaCambio;
     }
 
-    public void setUltFechaCambio(Date ultFechaCambio) {
+    public void setUltFechaCambio(String ultFechaCambio) {
         this.ultFechaCambio = ultFechaCambio;
     }
 

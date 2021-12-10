@@ -17,6 +17,7 @@ import android.view.ViewParent;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,20 +35,34 @@ import java.io.Serializable;
 
 public class activity_home extends AppCompatActivity {
 
-    private TextView nombre;
+    private TextView nombre, mModelo, mKilometros;
     private ImageView imagen;
     private LinearLayout linearLayout;
     private DatabaseReference databaseReference;
     BottomNavigationView bottomNavigation;
-    private String texto, modelo, ultVez;
+    private String texto, modelo, ultVez, modeloCoche;
+    private double kilometroCoche;
+    RelativeLayout mNotificacion;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        obtenerModelo();
+        obtenerKilometros();
+        String cModelo = modeloCoche;
+        Double cKilometros = kilometroCoche;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        mModelo = findViewById(R.id.modelo);
+        mKilometros = findViewById(R.id.kilometros);
         bottomNavigation = findViewById(R.id.bottom_nav);
+        mNotificacion = findViewById(R.id.notificacion_popup);
+        mNotificacion.setVisibility(View.INVISIBLE);
+
+        mModelo.setText("MODELO: "+ modeloCoche );
+        mKilometros.setText("KILOMETROS: "+ kilometroCoche + "km");
+
 
         bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -55,7 +70,8 @@ public class activity_home extends AppCompatActivity {
                 Intent intent;
                 switch (item.getItemId()){
                     case R.id.nav_home:
-
+                        mModelo.setText("MODELO: "+ modeloCoche );
+                        mKilometros.setText("KILOMETROS: "+ kilometroCoche + "km");
                         break;
 
                     case R.id.nav_add:
@@ -64,7 +80,7 @@ public class activity_home extends AppCompatActivity {
                         Bundle extras = new Bundle();
                         extras.putInt("imagen", R.mipmap.ic_coche0_foreground);
                         extras.putString("nombre", "Actualizar Datos");
-                        extras.putString("modelo", obtenerDatos());
+                        extras.putString("modelo", modeloCoche);
                         //extras.putString("ultVez", ultVez);
 
                         intent.putExtras(extras);
@@ -83,11 +99,8 @@ public class activity_home extends AppCompatActivity {
         });
 
 
-    }
 
-    public void add(View view){
 
-        startActivity(new Intent(activity_home.this, activity_profile.class));
 
     }
 
@@ -133,24 +146,7 @@ public class activity_home extends AppCompatActivity {
         return texto;
     }
 
-    private String obtenerDatos(){
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    texto = snapshot.child(user.getUid()).child("Coche").child("modelo").getValue().toString();
-                }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return texto;
-    }
 
     public void showDetails(View view) {
 
@@ -218,7 +214,7 @@ public class activity_home extends AppCompatActivity {
         }
 
         Intent intent = new Intent(activity_home.this,Pop_up.class);
-
+        Toast.makeText(this, modelo, Toast.LENGTH_SHORT).show();
         Bundle extras = new Bundle();
         extras.putInt("imagen", idImagen);
         extras.putString("nombre", nombre.getText().toString());
@@ -230,4 +226,43 @@ public class activity_home extends AppCompatActivity {
 
 
     }
+
+    private String obtenerModelo(){
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    modeloCoche = snapshot.child(user.getUid()).child("Coche").child("modelo").getValue().toString();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return modeloCoche;
+    }
+
+    private double obtenerKilometros(){
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    kilometroCoche = Integer.parseInt(snapshot.child(user.getUid()).child("Coche").child("kilometros").getValue().toString());
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        return kilometroCoche;
+    }
+
 }

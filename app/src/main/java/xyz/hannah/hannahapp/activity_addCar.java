@@ -79,27 +79,31 @@ public class activity_addCar extends AppCompatActivity {
 
         Neumatico neumatico = new Neumatico();
         neumatico.setModelo(String.valueOf(mRueda.getText()));
-        //neumatico.setUltFechaCambio(Date.valueOf(String.valueOf(dRueda.getText())));
+        neumatico.setUltFechaCambio(dRueda.getText().toString());
 
         Amortiguador amortiguador = new Amortiguador();
         amortiguador.setModelo(String.valueOf(mAmortiguador.getText()));
-        //amortiguador.setUltFechaCambio();
+        amortiguador.setUltFechaCambio(dAmortiguador.getText().toString());
 
         Frenos frenos = new Frenos();
         frenos.setModelo(String.valueOf(mFrenos.getText()));
-        //frenos.setUltFechaCambio();
+        frenos.setUltFechaCambio(dFrenos.getText().toString());
 
         Bateria bateria = new Bateria();
         bateria.setModelo(String.valueOf(mBateria.getText()));
+        bateria.setUltFechaCambio(dBateria.getText().toString());
 
         SistemaDeEscape sisEscape = new SistemaDeEscape();
         sisEscape.setModelo(String.valueOf(mCatalizador.getText()));
+        sisEscape.setUltFechaCambio(dCatalizador.getText().toString());
 
         CorreaDeDistribucion cDistribucion = new CorreaDeDistribucion();
         cDistribucion.setModelo(String.valueOf(mCDistribucion.getText()));
+        cDistribucion.setUltFechaCambio(dCDistribucion.getText().toString());
 
         Luces luces = new Luces();
         luces.setModelo(String.valueOf(mLuces.getText()));
+        luces.setUltFechaCambio(dLuces.getText().toString());
 
 
 
@@ -120,7 +124,8 @@ public class activity_addCar extends AppCompatActivity {
 
         Toast.makeText(this, "Partes del Coche Agregado", Toast.LENGTH_SHORT).show();
 
-        startActivity(new Intent(activity_addCar.this, activity_home.class));
+        Intent intent =new Intent(activity_addCar.this, activity_home.class);
+        startActivity(intent);
 
 
 
