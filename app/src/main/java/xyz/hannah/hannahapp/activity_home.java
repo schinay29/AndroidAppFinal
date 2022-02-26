@@ -1,6 +1,7 @@
 package xyz.hannah.hannahapp;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -30,27 +31,31 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 
 import java.io.Serializable;
 
+import xyz.hannah.hannahapp.ClasesAyuda.Coche;
+
 public class activity_home extends AppCompatActivity {
 
+    FirebaseAuth myAuth;
+    FirebaseFirestore myStore;
+    String idUsuario;
     private TextView nombre, mModelo, mKilometros;
     private ImageView imagen;
     private LinearLayout linearLayout;
-    private DatabaseReference databaseReference;
     BottomNavigationView bottomNavigation;
     private String texto, modelo, ultVez, modeloCoche;
-    private double kilometroCoche;
     RelativeLayout mNotificacion;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        obtenerModelo();
-        obtenerKilometros();
-        String cModelo = modeloCoche;
-        Double cKilometros = kilometroCoche;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
@@ -60,9 +65,21 @@ public class activity_home extends AppCompatActivity {
         mNotificacion = findViewById(R.id.notificacion_popup);
         mNotificacion.setVisibility(View.INVISIBLE);
 
-        mModelo.setText("MODELO: "+ modeloCoche );
-        mKilometros.setText("KILOMETROS: "+ kilometroCoche + "km");
+        myAuth = FirebaseAuth.getInstance();
+        myStore = FirebaseFirestore.getInstance();
+        idUsuario = myAuth.getCurrentUser().getUid();
 
+        //se situa en el documento de FirebaseStorage
+        DocumentReference docRef = myStore.collection("usuarios").document(idUsuario);
+        // obtine los valores de la BBDD
+        docRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+                mModelo.setText("MODELO: "+  value.getString("Modelo"));
+                mKilometros.setText("KILOMETROS: "+ value.getString("Kilometros") + "km");
+
+            }
+        });
 
         bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -70,8 +87,8 @@ public class activity_home extends AppCompatActivity {
                 Intent intent;
                 switch (item.getItemId()){
                     case R.id.nav_home:
-                        mModelo.setText("MODELO: "+ modeloCoche );
-                        mKilometros.setText("KILOMETROS: "+ kilometroCoche + "km");
+                        //mModelo.setText("MODELO: "+ modeloCoche );
+                        //mKilometros.setText("KILOMETROS: "+ kilometroCoche + "km");
                         break;
 
                     case R.id.nav_add:
@@ -98,52 +115,28 @@ public class activity_home extends AppCompatActivity {
             }
         });
 
-
-
-
-
     }
 
 
     private String obtenerModelo(String nombreParte){
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-
-        databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
+        //se situa en el documento
+        DocumentReference docRef = myStore.collection("usuarios").document(idUsuario);
+        // obtine los valores de la BBDD
+        docRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    texto = snapshot.child(user.getUid()).child("Coche").child(nombreParte).child("modelo").getValue().toString();
-                }
-            }
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
+                value.getString(nombreParte);
 
             }
         });
-        return texto;
+
+        return null;
     }
 
 
     private String obtenerUltVez(String nombreParte){
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-
-        databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    texto = snapshot.child(user.getUid()).child("Coche").child(nombreParte).child("ultFechaCambio").getValue().toString();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return texto;
+        return null;
     }
 
 
@@ -224,45 +217,6 @@ public class activity_home extends AppCompatActivity {
         intent.putExtras(extras);
         startActivity(intent);
 
-
-    }
-
-    private String obtenerModelo(){
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    modeloCoche = snapshot.child(user.getUid()).child("Coche").child("modelo").getValue().toString();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return modeloCoche;
-    }
-
-    private double obtenerKilometros(){
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-        databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    kilometroCoche = Integer.parseInt(snapshot.child(user.getUid()).child("Coche").child("kilometros").getValue().toString());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        return kilometroCoche;
     }
 
 }

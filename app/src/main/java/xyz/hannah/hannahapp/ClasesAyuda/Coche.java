@@ -1,12 +1,21 @@
 package xyz.hannah.hannahapp.ClasesAyuda;
 
 public class Coche {
+    private String matricula;
     private String modelo;
     private double kilometros;
     private Filtro filtro;
     private Luces luces;
     private Frenos frenos;
     private Bateria bateria;
+
+    private String getMatricula(){
+        return matricula;
+    }
+
+    private void setMatricula(String matricula){
+        this.matricula = matricula;
+    }
 
     public String getModelo() {
         return modelo;

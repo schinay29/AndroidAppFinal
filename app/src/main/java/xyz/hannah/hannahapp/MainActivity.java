@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 public class MainActivity extends AppCompatActivity {
     private EditText cpEmail;
     private EditText cpPassword;
+    FirebaseAuth myAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,18 @@ public class MainActivity extends AppCompatActivity {
 
         cpEmail = findViewById(R.id.cpUser);
         cpPassword = findViewById(R.id.cpPsswd);
+
+        myAuth = FirebaseAuth.getInstance();
+
+        // si el usuario ya esta logeado, lo redirige a la actividad principal
+        if (myAuth.getCurrentUser() != null) {
+            Toast.makeText(MainActivity.this, "Usuario actualmente identificado, redirigiendo...", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(getApplicationContext(), activity_home.class);
+            startActivity(intent);
+            finish();
+            //myAuth.sendPasswordResetEmail();
+        }
+
 
     }
 

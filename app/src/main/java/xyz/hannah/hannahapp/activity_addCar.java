@@ -1,5 +1,6 @@
 package xyz.hannah.hannahapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -8,15 +9,20 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
 
 import xyz.hannah.hannahapp.ClasesAyuda.Amortiguador;
@@ -30,8 +36,9 @@ import xyz.hannah.hannahapp.ClasesAyuda.SistemaDeEscape;
 
 public class activity_addCar extends AppCompatActivity {
 
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference databaseReference;
+    FirebaseAuth myAuth;
+    FirebaseFirestore myStore;
+    String idUsuario;
     EditText mRueda, mCDistribucion, mBateria, mFrenos, mLuces, mCatalizador, mAmortiguador;
     EditText dRueda, dCDistribucion, dBateria, dFrenos, dLuces, dCatalizador, dAmortiguador;
     String modelo;
@@ -49,18 +56,6 @@ public class activity_addCar extends AppCompatActivity {
         modelo =  parametros.getString("modelo");
         kilometro =  parametros.getDouble("kilometro");
 
-
-        //listaDatos();
-
-    }
-
-    private void inicializarFirebase(){
-        FirebaseApp.initializeApp(this);
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        databaseReference = firebaseDatabase.getReference();
-    }
-
-    public void añadirDatos(View view){
         mRueda = findViewById(R.id.cp_modeloRueda);
         mAmortiguador = findViewById(R.id.cp_modeloAmortiguador);
         mFrenos = findViewById(R.id.cp_modeloFrenos);
@@ -76,6 +71,16 @@ public class activity_addCar extends AppCompatActivity {
         dCatalizador = findViewById(R.id.cp_ultVezCatalizador);
         dCDistribucion = findViewById(R.id.cp_ultVezcDistribucion);
         dLuces = findViewById(R.id.cp_ultVezLuces);
+
+    }
+
+    private void inicializarFirebase(){
+        myAuth = FirebaseAuth.getInstance();
+        myStore = FirebaseFirestore.getInstance();
+        idUsuario = myAuth.getCurrentUser().getUid();
+    }
+
+    public void añadirDatos(View view){
 
         Neumatico neumatico = new Neumatico();
         neumatico.setModelo(String.valueOf(mRueda.getText()));
@@ -105,8 +110,6 @@ public class activity_addCar extends AppCompatActivity {
         luces.setModelo(String.valueOf(mLuces.getText()));
         luces.setUltFechaCambio(dLuces.getText().toString());
 
-
-
         Coche coche = new Coche();
         coche.setModelo(modelo);
         coche.setKilometros(kilometro);
@@ -118,16 +121,34 @@ public class activity_addCar extends AppCompatActivity {
         coche.setCorreaDistribucion(cDistribucion);
         coche.setLuces(luces);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        databaseReference.child("Usuario").child(user.getUid()).child("Coche").setValue(coche);
+        //crea la colección y el documento de la BBDD
+        DocumentReference docRef = myStore.collection("usuarios").document(idUsuario);
+
+        HashMap<String, String> infoCoche = new HashMap<>();
+        infoCoche.put("Modelo", coche.getModelo());
+        infoCoche.put("Kilometros", String.valueOf(coche.getKilometros()));
+        infoCoche.put("Neumatico", String.valueOf(coche.getNeumatico().getUltFechaCambio()));
+        infoCoche.put("Amortiguador", String.valueOf(coche.getAmortiguador().getUltFechaCambio()));
+        infoCoche.put("Frenos", String.valueOf(coche.getFrenos().getUltFechaCambio()));
+        infoCoche.put("Bateria", String.valueOf(coche.getBateria().getUltFechaCambio()));
+        infoCoche.put("Sistema de escape", String.valueOf(coche.getSistemaDeEscape().getUltFechaCambio()));
+        infoCoche.put("Correa de distribución", String.valueOf(coche.getCorreaDistribucion().getUltFechaCambio()));
+        infoCoche.put("Luces", String.valueOf(coche.getLuces().getUltFechaCambio()));
 
 
-        Toast.makeText(this, "Partes del Coche Agregado", Toast.LENGTH_SHORT).show();
+        //registro de datos del usuario en FirestoreDatabase
+        docRef.set(infoCoche).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(activity_addCar.this, "Partes del Coche Agregado", Toast.LENGTH_SHORT).show();
 
-        Intent intent =new Intent(activity_addCar.this, activity_home.class);
-        startActivity(intent);
+                    Intent intent =new Intent(activity_addCar.this, activity_home.class);
+                    startActivity(intent);
 
-
+                }
+            }
+        });
 
     }
 

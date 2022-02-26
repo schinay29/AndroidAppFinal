@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -12,7 +14,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,12 +27,21 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class activity_profile extends AppCompatActivity {
 
+    FirebaseAuth myAuth;
+    FirebaseFirestore myStore;
+    String idUsuario;
+    //para guardar imagenes en Firebase
+    StorageReference myStorage;
     private ImageView imagen;
     BottomNavigationView bottomNavigation;
-    private DatabaseReference databaseReference;
     private TextView mNombre, mKilometros, mModelo;
     private EditText mEmail, mTelefono, mFecha;
 
@@ -45,8 +59,15 @@ public class activity_profile extends AppCompatActivity {
         mFecha = findViewById(R.id.cpFechaNacimiento);
         bottomNavigation = findViewById(R.id.bottom_nav);
 
-        bottomNavigation.setSelectedItemId(R.id.nav_profile);
+        myAuth = FirebaseAuth.getInstance();
+        myStore = FirebaseFirestore.getInstance();
+        idUsuario = myAuth.getCurrentUser().getUid();
+        //instancia el Storage
+        myStorage = FirebaseStorage.getInstance().getReference();
 
+        obtenerImagenEnStorageFierabse();
+
+        bottomNavigation.setSelectedItemId(R.id.nav_profile);
         bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -71,33 +92,11 @@ public class activity_profile extends AppCompatActivity {
             }
         });
 
-
-
         cambiarDatos();
-
-
     }
 
     private void cambiarDatos(){
-        databaseReference = FirebaseDatabase.getInstance().getReference();
-
-        databaseReference.child("Usuario").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.exists()){
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    mNombre.setText(snapshot.child(user.getUid()).child("nombre").getValue().toString().toUpperCase());
-                    mModelo.setText(snapshot.child(user.getUid()).child("Coche").child("modelo").getValue().toString());
-                    mKilometros.setText(snapshot.child(user.getUid()).child("Coche").child("kilometros").getValue().toString() + "km");
-                    mEmail.setText(user.getEmail());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
+        // método para cambiar los datos del perfil y agregar a la BBDD
     }
 
     public void changeImg(View view) {
@@ -108,12 +107,32 @@ public class activity_profile extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-
         super.onActivityResult(requestCode, resultCode, data);
         if(resultCode == RESULT_OK){
             Uri path = data.getData();
             imagen.setImageURI(path);
+            //llamamos al metodo para subir la imagen a Firebase Storage
+            subirImagenCloudStorageFirebase(path);
         }
+    }
+
+    // metodo para guardar imagen a Storage Firebase
+    private void subirImagenCloudStorageFirebase(Uri imagenUri) {
+        // guarda la imagen
+        //StorageReference referenciaFichero = myStorage.child("imagen_perfil.jpg");
+        // crea una carpeta de usuario y guarda la imagen dentro
+        StorageReference referenciaFichero = myStorage.child("usuarios/" + idUsuario + "/imagen_perfil.jpg");
+        referenciaFichero.putFile(imagenUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(activity_profile.this, "Imagen Cargada.", Toast.LENGTH_LONG).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(activity_profile.this, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     public void editarCampo(View view) {
@@ -126,4 +145,27 @@ public class activity_profile extends AppCompatActivity {
         }
 
     }
+
+    public void obtenerImagenEnStorageFierabse(){
+        //se situa el storage en donde se encuentra la imagen
+        StorageReference photoReference = myStorage.child("usuarios/" + idUsuario + "/imagen_perfil.jpg");
+        final long ONE_MEGABYTE = 1024 * 1024;
+
+        //se obtiene la imagen a traves de  un mapa de bits y se hace sus respectivos listener
+        photoReference.getBytes(ONE_MEGABYTE).addOnSuccessListener(new OnSuccessListener<byte[]>() {
+            @Override
+            public void onSuccess(byte[] bytes) {
+                Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                // se carga la imagen en el imagenView
+                imagen.setImageBitmap(bmp);
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getApplicationContext(), "No Such file or Path found!!", Toast.LENGTH_LONG).show();
+            }
+        });
+
+    }
+
 }
