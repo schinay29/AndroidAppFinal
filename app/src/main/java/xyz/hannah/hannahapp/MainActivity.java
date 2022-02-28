@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         // si el usuario ya esta logeado, lo redirige a la actividad principal
         if (myAuth.getCurrentUser() != null) {
             Toast.makeText(MainActivity.this, "Usuario actualmente identificado, redirigiendo...", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(getApplicationContext(), activity_home.class);
+            Intent intent = new Intent(getApplicationContext(), activity_seleccionDatos.class);
             startActivity(intent);
             finish();
             //myAuth.sendPasswordResetEmail();

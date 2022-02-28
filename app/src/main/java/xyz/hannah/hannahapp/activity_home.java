@@ -17,6 +17,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -69,8 +70,9 @@ public class activity_home extends AppCompatActivity {
      */
     RecyclerView recyclerView;
     String s1[];
-    int images[]={R.mipmap.ic_aceite_lubricante, R.mipmap.ic_amortiguador, R.mipmap.ic_bateria, R.mipmap.ic_catalizador, R.mipmap.ic_rueda,
-            R.mipmap.ic_correoa_de_distribucion, R.mipmap.ic_filtro, R.mipmap.ic_frenos, R.mipmap.ic_luces};
+    ArrayList<Integer> images;
+    //ArrayList<Integer> images ={R.mipmap.ic_aceite_lubricante, R.mipmap.ic_amortiguador, R.mipmap.ic_bateria, R.mipmap.ic_catalizador, R.mipmap.ic_rueda,
+      //      R.mipmap.ic_correoa_de_distribucion, R.mipmap.ic_filtro, R.mipmap.ic_frenos, R.mipmap.ic_luces};
 
     /**
      * API google
@@ -147,12 +149,20 @@ public class activity_home extends AppCompatActivity {
         /**
          * creando vista inicial
          */
+
+        Intent intent = getIntent();
+
+        Bundle parametros = this.getIntent().getExtras();
+        images = parametros.getIntegerArrayList("lista");
+
+        //String ultVez = parametros.getString("ultVez");
         s1 = getResources().getStringArray(R.array.partes_coche);
         recyclerView = findViewById(R.id.recyclerView);
 
         MyAdapterRecyclerView adapter = new MyAdapterRecyclerView(this, s1, images);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+
 
 
         // inicializa el seguimiento de la actividad a false
@@ -190,8 +200,8 @@ public class activity_home extends AppCompatActivity {
 
 
         // TODO: Initialize PendingIntent that will be triggered when a activity transition occurs.
-        Intent intent = new Intent(TRANSITIONS_RECEIVER_ACTION);
-        pendingIntent = PendingIntent.getBroadcast(activity_home.this, 0, intent, 0);
+        Intent intent2 = new Intent(TRANSITIONS_RECEIVER_ACTION);
+        pendingIntent = PendingIntent.getBroadcast(activity_home.this, 0, intent2, 0);
 
         // Crea un BroadcastReciever que recibirá la información cuando suceda una transición
         mTransitionsReceiver = new TransitionsReceiver();
