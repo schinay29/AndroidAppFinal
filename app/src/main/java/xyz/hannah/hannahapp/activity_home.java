@@ -16,6 +16,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
@@ -48,11 +49,14 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
 import xyz.hannah.hannahapp.ClasesAyuda.Coche;
 import xyz.hannah.hannahapp.ClasesAyuda.AdapterRVSelection;
+import xyz.hannah.hannahapp.ClasesAyuda.PartOfCar;
+import xyz.hannah.hannahapp.ClasesAyuda.PlantillaPartOfCar;
 
 public class activity_home extends AppCompatActivity {
 
@@ -66,12 +70,12 @@ public class activity_home extends AppCompatActivity {
     private String texto, modelo, ultVez, modeloCoche;
     RelativeLayout mNotificacion;
 
+
     /**
      * declarando variables para vista
      */
     private RecyclerView recyclerView;
-    private String nombrePartOfCar[];
-    private List<Integer> idImagen;
+    private List<PlantillaPartOfCar> partesCoche;
 
     /**
      * API google
@@ -149,27 +153,27 @@ public class activity_home extends AppCompatActivity {
          * creando vista inicial
          */
 
-        idImagen = new ArrayList<Integer>();
-        Intent intent = getIntent();
+        partesCoche = new ArrayList<PlantillaPartOfCar>();
 
-        Bundle parametros = this.getIntent().getExtras();
-        if(!parametros.isEmpty()){
-            idImagen = parametros.getIntegerArrayList("lista");
+        Bundle parametros;
+        if((parametros = this.getIntent().getExtras()) !=null){
+            if(!parametros.isEmpty()){
+                partesCoche = (List<PlantillaPartOfCar>) parametros.getSerializable("lista");
 
-            // obtengo el objeto coche enviado desde la actividad anterior
-            // Coche coche = (Coche) getIntent().getSerializableExtra("claseCoche");
-            Coche coche = (Coche) parametros.getSerializable("claseCoche");
+                // obtengo el objeto coche enviado desde la actividad anterior
+                // Coche coche = (Coche) getIntent().getSerializableExtra("claseCoche");
+                Coche coche = (Coche) parametros.getSerializable("claseCoche");
+            }
         }
 
 
 
+
         //String ultVez = parametros.getString("ultVez");
-        // obtengo el array de strings de strings.xml y lo guardo en nombrePartOfCar
         // inicializo el recyclerView
-        nombrePartOfCar = getResources().getStringArray(R.array.partes_coche);
         recyclerView = findViewById(R.id.recyclerViewHome);
 
-        AdapterRVSelection adapter = new AdapterRVSelection(this, nombrePartOfCar, (ArrayList<Integer>) idImagen);
+        AdapterRVSelection adapter = new AdapterRVSelection(this, (ArrayList<PlantillaPartOfCar>) partesCoche);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -297,82 +301,18 @@ public class activity_home extends AppCompatActivity {
 
         Toast.makeText(this, "id: " + view.getId(), Toast.LENGTH_SHORT).show();
 
-        /**
-        imagen = findViewById(view.getId());
-        linearLayout = (LinearLayout)imagen.getParent();
-        nombre = findViewById(linearLayout.getChildAt(1).getId());
-        nombre.getText().toString();
+        for (PlantillaPartOfCar p: partesCoche) {
+            if (p.getId() == view.getId()) {
 
-        int idImagen = 0;
+                Log.d(TAG, "son iguales");
 
-        switch (view.getId()){
-            case R.id.img_luces:
-                idImagen = R.mipmap.ic_luces;
-                modelo = obtenerModelo("luces");
-                //ultVez = obtenerUltVez("luces");
+                Intent intent = new Intent(activity_home.this,Pop_up.class);
+                Toast.makeText(this, modelo, Toast.LENGTH_SHORT).show();
+                intent.putExtra("PlantillaPartOfCar", p);
+                startActivity(intent);
                 break;
-
-            case R.id.img_aceite:
-                idImagen = R.mipmap.ic_aceite_lubricante;
-                modelo = obtenerModelo("aceite");
-                //ultVez = obtenerUltVez("aceite");
-                break;
-
-            case R.id.img_bateria:
-                idImagen = R.mipmap.ic_bateria;
-                modelo = obtenerModelo("bateria");
-                //ultVez = obtenerUltVez("bateria");
-                break;
-
-            case R.id.img_catalizador:
-                idImagen = R.mipmap.ic_catalizador;
-                modelo = obtenerModelo("sistemaDeEscape");
-                //ultVez = obtenerUltVez("sistemaDeEscape");
-                break;
-
-            case R.id.img_amortiguador:
-                idImagen = R.mipmap.ic_amortiguador;
-                modelo = obtenerModelo("amortiguador");
-                //ultVez = obtenerUltVez("amortiguador");
-                break;
-
-            case R.id.img_correa_distribucion:
-                idImagen = R.mipmap.ic_correoa_de_distribucion;
-                modelo = obtenerModelo("correaDistribucion");
-                //ultVez = obtenerUltVez("correaDistribucion");
-                break;
-
-            case R.id.img_filtro:
-                idImagen = R.mipmap.ic_filtro;
-                modelo = obtenerModelo("filtro");
-                //ultVez = obtenerUltVez("filtro");
-                break;
-
-            case R.id.img_rueda:
-                idImagen = R.mipmap.ic_rueda;
-                modelo = obtenerModelo("neumatico");
-                //ultVez = obtenerUltVez("neumatico");
-                break;
-
-            case R.id.img_frenos:
-                idImagen = R.mipmap.ic_frenos;
-                modelo = obtenerModelo("frenos");
-                //ultVez = obtenerUltVez("frenos");
-                break;
+            }
         }
-
-        Intent intent = new Intent(activity_home.this,Pop_up.class);
-        Toast.makeText(this, modelo, Toast.LENGTH_SHORT).show();
-        Bundle extras = new Bundle();
-        extras.putInt("imagen", idImagen);
-        extras.putString("nombre", nombre.getText().toString());
-        extras.putString("modelo", modelo);
-        //extras.putString("ultVez", ultVez);
-
-        intent.putExtras(extras);
-        startActivity(intent);
-        */
-
     }
 
 

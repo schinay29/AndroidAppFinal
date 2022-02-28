@@ -20,12 +20,17 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 
+import xyz.hannah.hannahapp.ClasesAyuda.Coche;
+import xyz.hannah.hannahapp.ClasesAyuda.PartOfCar;
+import xyz.hannah.hannahapp.ClasesAyuda.PlantillaPartOfCar;
+
 public class Pop_up extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
     private ImageView mImagen, mImgEdit;
     private TextView mNombre, mText;
     private EditText mModelo, mUltVez;
+    private PlantillaPartOfCar partOfCar;
 
 
     @Override
@@ -54,15 +59,11 @@ public class Pop_up extends AppCompatActivity {
     }
 
     private void obtenerDatos(){
-        Intent intent = getIntent();
 
-        Bundle parametros = this.getIntent().getExtras();
-        int imagen =  parametros.getInt("imagen");
-        String nombre = parametros.getString("nombre");
-        String modelo = parametros.getString("modelo");
-        //String ultVez = parametros.getString("ultVez");
+        // obtengo el objeto coche enviado desde la actividad anterior
+        partOfCar = (PlantillaPartOfCar) getIntent().getSerializableExtra("PlantillaPartOfCar");
 
-        if(imagen == R.mipmap.ic_coche0_foreground){
+        if(partOfCar.getIdImagen() == R.mipmap.ic_coche0_foreground){
             mText.setText("Kilometros");
             mUltVez.setEnabled(true);
             mImgEdit.setVisibility(View.INVISIBLE);
@@ -70,10 +71,10 @@ public class Pop_up extends AppCompatActivity {
             mText.setText("última revisión");
             mImgEdit.setVisibility(View.VISIBLE);
         }
-        mImagen.setImageResource(imagen);
-        mNombre.setText(nombre);
-        mModelo.setText(modelo);
-        //mUltVez.setText(ultVez);
+        mImagen.setImageResource(partOfCar.getIdImagen());
+        mNombre.setText(partOfCar.getNombre());
+        mModelo.setText(partOfCar.getModelo());
+        mUltVez.setText(partOfCar.getUltFechaCambio());
 
     }
 

@@ -1,6 +1,5 @@
 package xyz.hannah.hannahapp;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,23 +8,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import xyz.hannah.hannahapp.ClasesAyuda.AdapterRVInfo;
-import xyz.hannah.hannahapp.ClasesAyuda.AdapterRVSelection;
 import xyz.hannah.hannahapp.ClasesAyuda.Coche;
+import xyz.hannah.hannahapp.ClasesAyuda.PlantillaPartOfCar;
 
 public class activity_addCar extends AppCompatActivity {
 
@@ -41,10 +35,8 @@ public class activity_addCar extends AppCompatActivity {
      * declarando variables para vista
      */
     private RecyclerView recyclerView;
-    private String nombrePartOfCar[];
-    private List<Integer> idImagen;
+    private List<PlantillaPartOfCar> partesCoche;
 
-    private MaterialCardView cardView;
     private Coche coche;
 
 
@@ -55,12 +47,12 @@ public class activity_addCar extends AppCompatActivity {
 
         inicializarFirebase();
 
-        idImagen = new ArrayList<Integer>();
+        partesCoche = new ArrayList<PlantillaPartOfCar>();
         Intent intent = getIntent();
 
         Bundle parametros = this.getIntent().getExtras();
 
-        idImagen = parametros.getIntegerArrayList("lista");
+        partesCoche = (List<PlantillaPartOfCar>) parametros.getSerializable("lista");
 
         // obtengo el objeto coche enviado desde la actividad anterior
         // Coche coche = (Coche) getIntent().getSerializableExtra("claseCoche");
@@ -68,12 +60,10 @@ public class activity_addCar extends AppCompatActivity {
 
 
         //String ultVez = parametros.getString("ultVez");
-        // obtengo el array de strings de strings.xml y lo guardo en nombrePartOfCar
         // inicializo el recyclerView
-        nombrePartOfCar = getResources().getStringArray(R.array.partes_coche);
         recyclerView = findViewById(R.id.recyclerViewAddCar);
 
-        AdapterRVInfo adapter = new AdapterRVInfo(this, nombrePartOfCar, (ArrayList<Integer>) idImagen);
+        AdapterRVInfo adapter = new AdapterRVInfo(this, (List<PlantillaPartOfCar>) partesCoche);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
@@ -158,8 +148,9 @@ public class activity_addCar extends AppCompatActivity {
          */
 
         Intent intent =new Intent(activity_addCar.this, activity_home.class);
+
         Bundle extras = new Bundle();
-        extras.putIntegerArrayList("lista", (ArrayList<Integer>) idImagen);
+        extras.putSerializable("lista", (ArrayList<PlantillaPartOfCar>) partesCoche);
         //extras.putString("ultVez", ultVez);
         extras.putSerializable("claseCoche", coche);
         //intent.putExtras("claseCoche", coche);

@@ -1,8 +1,6 @@
 package xyz.hannah.hannahapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,16 +9,19 @@ import android.view.View;
 
 import com.google.android.material.card.MaterialCardView;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import xyz.hannah.hannahapp.ClasesAyuda.Coche;
+import xyz.hannah.hannahapp.ClasesAyuda.PlantillaPartOfCar;
 
 public class activity_seleccionDatos extends AppCompatActivity {
     private MaterialCardView cardView;
-    private List<Integer> idImagen;
+    private List<PlantillaPartOfCar> partesCoche;
     private Coche coche;
-
+    PlantillaPartOfCar plantilla;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class activity_seleccionDatos extends AppCompatActivity {
         coche = (Coche) getIntent().getSerializableExtra("claseCoche");
 
         // inicializo el List idImagen que guardará los id de las imagenes seleccionadas
-        idImagen = new ArrayList<Integer>();
+        partesCoche = new ArrayList<PlantillaPartOfCar>();
 
 
 
@@ -41,71 +42,76 @@ public class activity_seleccionDatos extends AppCompatActivity {
 
 
     public void addSelection(View view) {
-        Integer id = 0;
         cardView = findViewById(view.getId());
         //cardView.setId();
 
         switch (cardView.getId()){
             case R.id.cardViewAceite:
-                id = R.mipmap.ic_aceite_lubricante;
+                plantilla = new PlantillaPartOfCar(R.id.plantilla_aceiteLubricante, R.mipmap.ic_aceite_lubricante, "aceite lubricante");
                 break;
 
             case R.id.cardViewAmortiguador:
-                id = R.mipmap.ic_amortiguador;
+                plantilla = new PlantillaPartOfCar(R.id.plantilla_amortiguadores, R.mipmap.ic_amortiguador, "amortiguador");
                 break;
 
             case R.id.cardViewBateria:
-                id = R.mipmap.ic_bateria;
+                plantilla = new PlantillaPartOfCar(R.id.plantilla_bateria, R.mipmap.ic_bateria, "bateria");
                 break;
 
             case R.id.cardViewCatalizador:
-                id = R.mipmap.ic_catalizador;
+                plantilla = new PlantillaPartOfCar(R.id.plantilla_sistemaEscape, R.mipmap.ic_catalizador, "sistema de escape y catalizador");
                 break;
 
             case R.id.cardViewFiltro:
-                id = R.mipmap.ic_filtro;
+                plantilla = new PlantillaPartOfCar(R.id.plantilla_filtros, R.mipmap.ic_filtro, "filtros");
                 break;
 
             case R.id.cardViewCorreaDistribucion:
-                id = R.mipmap.ic_correoa_de_distribucion;
+                plantilla = new PlantillaPartOfCar(R.id.plantilla_correaDistribucion, R.mipmap.ic_correoa_de_distribucion, "correa de distribucion");
                 break;
 
             case R.id.cardViewFrenos:
-                id = R.mipmap.ic_frenos;
+                plantilla = new PlantillaPartOfCar(R.id.plantilla_frenos, R.mipmap.ic_frenos, "frenos");
                 break;
 
             case R.id.cardViewLuces:
-                id = R.mipmap.ic_luces;
+                plantilla = new PlantillaPartOfCar(R.id.plantilla_luces, R.mipmap.ic_luces, "luces");
                 break;
 
             case R.id.cardViewRueda:
-                id = R.mipmap.ic_rueda;
+                plantilla = new PlantillaPartOfCar(R.id.plantilla_rueda, R.mipmap.ic_rueda, "ruedas");
                 break;
         }
 
         if(cardView.isChecked()){
             cardView.setChecked(false);
-            Log.d("MainActivity", "remove id: " + id);
-            idImagen.remove(id);
-            //idImagen.
+            Log.d("MainActivity", "remove id: " + plantilla.getNombre() + " | " + plantilla.getId());
+
+            Iterator<PlantillaPartOfCar> iter= partesCoche.iterator();
+            while (iter.hasNext()){
+                if (iter.next().getNombre().equals(plantilla.getNombre())) {
+                    iter.remove();
+                }
+            }
+
         }else{
             cardView.setChecked(true);
-            Log.d("MainActivity", "add id: " + id);
-            idImagen.add(id);
+            Log.d("MainActivity", "add id: " + plantilla.getNombre() + " | " + plantilla.getId());
+            partesCoche.add(plantilla);
         }
 
 
     }
 
     public void pulsar(View view) {
-        for (int ident: idImagen) {
-            Log.d("MainActivity", "id: " + ident);
+        for (PlantillaPartOfCar plant: partesCoche) {
+            Log.d("MainActivity", "id: " + plant.getNombre() + " | " + plant.getId());
         }
 
         Intent intent = new Intent(activity_seleccionDatos.this,activity_addCar.class);
 
         Bundle extras = new Bundle();
-        extras.putIntegerArrayList("lista", (ArrayList<Integer>) idImagen);
+        extras.putSerializable("lista", (Serializable) partesCoche);
         //extras.putString("ultVez", ultVez);
         extras.putSerializable("claseCoche", coche);
         //intent.putExtras("claseCoche", coche);

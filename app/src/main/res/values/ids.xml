@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="plantilla_frenos" type="id"/>
+    <item name="plantilla_luces" type="id"/>
+    <item name="plantilla_bateria" type="id"/>
+    <item name="plantilla_filtros" type="id"/>
+    <item name="plantilla_correaDistribucion" type="id"/>
+    <item name="plantilla_sistemaEscape" type="id"/>
+    <item name="plantilla_amortiguadores" type="id"/>
+    <item name="plantilla_aceiteLubricante" type="id"/>
+    <item name="plantilla_rueda" type="id"/>
+</resources>

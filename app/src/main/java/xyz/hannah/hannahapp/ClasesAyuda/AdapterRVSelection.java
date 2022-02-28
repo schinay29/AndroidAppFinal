@@ -11,18 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import xyz.hannah.hannahapp.R;
 
 public class AdapterRVSelection extends RecyclerView.Adapter<AdapterRVSelection.MyViewHolderSelection> {
-    private String data1[];
-    private  ArrayList<Integer> images;
+    private List<PlantillaPartOfCar> partesCoche;
     private  Context context;
 
-    public AdapterRVSelection(Context ct, String s1[], ArrayList<Integer> images){
+    public AdapterRVSelection(Context ct, List<PlantillaPartOfCar> partesCoche){
         context = ct;
-        data1 = s1;
-        this.images = images;
+        this.partesCoche = partesCoche;
 
 
     }
@@ -38,14 +37,15 @@ public class AdapterRVSelection extends RecyclerView.Adapter<AdapterRVSelection.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolderSelection holder, int position) {
-        holder.myText.setText(data1[position]);
-        holder.myImage.setImageResource(images.get(position));
+        holder.itemView.setId(partesCoche.get(position).getId());
+        holder.myText.setText(partesCoche.get(position).getNombre());
+        holder.myImage.setImageResource(partesCoche.get(position).getIdImagen());
 
     }
 
     @Override
     public int getItemCount() {
-        return images.size();
+        return partesCoche.size();
     }
 
     public class MyViewHolderSelection extends RecyclerView.ViewHolder{
