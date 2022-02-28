@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="xyz.hannah.hannahapp">
-
     <!-- especificando permiso para usar la API de reconocimiento de actividad -->
     <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
     <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION" />
-
 
     <application
         android:allowBackup="true"
@@ -14,7 +12,9 @@
         android:roundIcon="@mipmap/logo_app_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HannahApp">
-
+        <activity
+            android:name=".activity_seleccionDatos"
+            android:exported="false" />
         <activity
             android:name=".activity_profile"
             android:exported="true" />

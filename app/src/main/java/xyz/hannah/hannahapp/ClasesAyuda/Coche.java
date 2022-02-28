@@ -1,19 +1,42 @@
 package xyz.hannah.hannahapp.ClasesAyuda;
 
+import java.util.List;
+
 public class Coche {
     private String matricula;
     private String modelo;
     private double kilometros;
-    private Filtro filtro;
-    private Luces luces;
-    private Frenos frenos;
-    private Bateria bateria;
+    private List<PartOfCar> partesDelCoche;
 
-    private String getMatricula(){
+    public Coche() {
+    }
+
+    public Coche(String matricula, String modelo, double kilometros) {
+        this.matricula = matricula;
+        this.modelo = modelo;
+        this.kilometros = kilometros;
+    }
+
+    public Coche(String matricula, String modelo, double kilometros, List<PartOfCar> partesDelCoche) {
+        this.matricula = matricula;
+        this.modelo = modelo;
+        this.kilometros = kilometros;
+        this.partesDelCoche = partesDelCoche;
+    }
+
+    public List<PartOfCar> getPartesDelCoche() {
+        return partesDelCoche;
+    }
+
+    public void setPartesDelCoche(List<PartOfCar> partesDelCoche) {
+        this.partesDelCoche = partesDelCoche;
+    }
+
+    public String getMatricula() {
         return matricula;
     }
 
-    private void setMatricula(String matricula){
+    public void setMatricula(String matricula) {
         this.matricula = matricula;
     }
 
@@ -32,83 +55,4 @@ public class Coche {
     public void setKilometros(double kilometros) {
         this.kilometros = kilometros;
     }
-
-    public Filtro getFiltro() {
-        return filtro;
-    }
-
-    public void setFiltro(Filtro filtro) {
-        this.filtro = filtro;
-    }
-
-    public Luces getLuces() {
-        return luces;
-    }
-
-    public void setLuces(Luces luces) {
-        this.luces = luces;
-    }
-
-    public Frenos getFrenos() {
-        return frenos;
-    }
-
-    public void setFrenos(Frenos frenos) {
-        this.frenos = frenos;
-    }
-
-    public Bateria getBateria() {
-        return bateria;
-    }
-
-    public void setBateria(Bateria bateria) {
-        this.bateria = bateria;
-    }
-
-    public Neumatico getNeumatico() {
-        return neumatico;
-    }
-
-    public void setNeumatico(Neumatico neumatico) {
-        this.neumatico = neumatico;
-    }
-
-    public Amortiguador getAmortiguador() {
-        return amortiguador;
-    }
-
-    public void setAmortiguador(Amortiguador amortiguador) {
-        this.amortiguador = amortiguador;
-    }
-
-    public SistemaDeEscape getSistemaDeEscape() {
-        return sistemaDeEscape;
-    }
-
-    public void setSistemaDeEscape(SistemaDeEscape sistemaDeEscape) {
-        this.sistemaDeEscape = sistemaDeEscape;
-    }
-
-    public AceiteLubricante getAceiteLubricante() {
-        return aceiteLubricante;
-    }
-
-    public void setAceiteLubricante(AceiteLubricante aceiteLubricante) {
-        this.aceiteLubricante = aceiteLubricante;
-    }
-
-    public CorreaDeDistribucion getCorreaDistribucion() {
-        return correaDistribucion;
-    }
-
-    public void setCorreaDistribucion(CorreaDeDistribucion correaDistribucion) {
-        this.correaDistribucion = correaDistribucion;
-    }
-
-    private Neumatico neumatico;
-    private Amortiguador amortiguador;
-    private SistemaDeEscape sistemaDeEscape;
-    private AceiteLubricante aceiteLubricante;
-    private CorreaDeDistribucion correaDistribucion;
-
 }

@@ -39,6 +39,9 @@
         android:layout_marginStart="32dp"
         android:background="@drawable/background_content_form"
         android:elevation="5dp"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/notificacion_popup">
@@ -62,6 +65,9 @@
         android:layout_marginTop="20dp"
         android:layout_marginStart="32dp"
         android:background="@drawable/background_content_form"
+        android:checkable="true"
+        android:clickable="true"
+        android:focusable="true"
         android:elevation="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/conteinerModelo">
@@ -358,6 +364,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.513"
         app:srcCompat="@mipmap/ic_coche1_foreground" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="409dp"
+        android:layout_height="324dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
     <Button
         android:id="@+id/button"

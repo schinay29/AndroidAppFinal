@@ -21,6 +21,20 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+
+    <!-- array para recyclerView -->
+    <string-array name="partes_coche">
+        <item>Ruedasd</item>
+        <item>bateria</item>
+        <item>luces</item>
+        <item>frenos</item>
+        <item>Sistema de escape y catalizadores</item>
+        <item>amortiguadores</item>
+        <item>aceite lubricante</item>
+        <item>filtros</item>
+        <item>correa de distribucion</item>
+    </string-array>
+
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <!-- TODO: Remove or change this placeholder text -->

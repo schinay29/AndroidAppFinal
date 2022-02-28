@@ -11,28 +11,14 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.List;
 
-import xyz.hannah.hannahapp.ClasesAyuda.Amortiguador;
-import xyz.hannah.hannahapp.ClasesAyuda.Bateria;
 import xyz.hannah.hannahapp.ClasesAyuda.Coche;
-import xyz.hannah.hannahapp.ClasesAyuda.CorreaDeDistribucion;
-import xyz.hannah.hannahapp.ClasesAyuda.Frenos;
-import xyz.hannah.hannahapp.ClasesAyuda.Luces;
-import xyz.hannah.hannahapp.ClasesAyuda.Neumatico;
-import xyz.hannah.hannahapp.ClasesAyuda.SistemaDeEscape;
 
 public class activity_addCar extends AppCompatActivity {
 
@@ -82,6 +68,7 @@ public class activity_addCar extends AppCompatActivity {
 
     public void añadirDatos(View view){
 
+        /**
         Neumatico neumatico = new Neumatico();
         neumatico.setModelo(String.valueOf(mRueda.getText()));
         neumatico.setUltFechaCambio(dRueda.getText().toString());
@@ -149,6 +136,7 @@ public class activity_addCar extends AppCompatActivity {
                 }
             }
         });
+         */
 
     }
 

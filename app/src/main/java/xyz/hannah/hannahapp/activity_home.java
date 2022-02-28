@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.app.Notification;
@@ -61,6 +63,14 @@ public class activity_home extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
     private String texto, modelo, ultVez, modeloCoche;
     RelativeLayout mNotificacion;
+
+    /**
+     * declarando variables para vista
+     */
+    RecyclerView recyclerView;
+    String s1[];
+    int images[]={R.mipmap.ic_aceite_lubricante, R.mipmap.ic_amortiguador, R.mipmap.ic_bateria, R.mipmap.ic_catalizador, R.mipmap.ic_rueda,
+            R.mipmap.ic_correoa_de_distribucion, R.mipmap.ic_filtro, R.mipmap.ic_frenos, R.mipmap.ic_luces};
 
     /**
      * API google
@@ -133,6 +143,17 @@ public class activity_home extends AppCompatActivity {
         myAuth = FirebaseAuth.getInstance();
         myStore = FirebaseFirestore.getInstance();
         idUsuario = myAuth.getCurrentUser().getUid();
+
+        /**
+         * creando vista inicial
+         */
+        s1 = getResources().getStringArray(R.array.partes_coche);
+        recyclerView = findViewById(R.id.recyclerView);
+
+        MyAdapterRecyclerView adapter = new MyAdapterRecyclerView(this, s1, images);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         // inicializa el seguimiento de la actividad a false
         seguimientoActivado = false;
