@@ -4,46 +4,34 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.google.android.material.card.MaterialCardView;
 
-import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class activity_seleccionDatos extends AppCompatActivity {
-    MaterialCardView cardView;
+import xyz.hannah.hannahapp.ClasesAyuda.Coche;
 
-    List<Integer> idImagen;
-    RecyclerView recyclerView;
-    String s1[];
-    int images[]={R.mipmap.ic_aceite_lubricante, R.mipmap.ic_amortiguador, R.mipmap.ic_bateria, R.mipmap.ic_catalizador, R.mipmap.ic_rueda,
-            R.mipmap.ic_correoa_de_distribucion, R.mipmap.ic_filtro, R.mipmap.ic_frenos, R.mipmap.ic_luces};
+public class activity_seleccionDatos extends AppCompatActivity {
+    private MaterialCardView cardView;
+    private List<Integer> idImagen;
+    private Coche coche;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seleccion_datos);
 
-        s1 = getResources().getStringArray(R.array.partes_coche);
-        recyclerView = findViewById(R.id.recyclerView);
-        idImagen = new ArrayList<Integer>();
+        // obtengo el objeto coche enviado desde la actividad anterior
+        coche = (Coche) getIntent().getSerializableExtra("claseCoche");
 
-        MyAdapterRecyclerView adapter = new MyAdapterRecyclerView(this, s1, (ArrayList<Integer>) idImagen);
-        recyclerView.setAdapter(adapter);
-        LinearLayoutManager linear = new LinearLayoutManager(this);
-        linear.setOrientation(RecyclerView.HORIZONTAL);
-        recyclerView.setLayoutManager(linear);
+        // inicializo el List idImagen que guardará los id de las imagenes seleccionadas
+        idImagen = new ArrayList<Integer>();
 
 
 
@@ -55,6 +43,7 @@ public class activity_seleccionDatos extends AppCompatActivity {
     public void addSelection(View view) {
         Integer id = 0;
         cardView = findViewById(view.getId());
+        //cardView.setId();
 
         switch (cardView.getId()){
             case R.id.cardViewAceite:
@@ -112,12 +101,14 @@ public class activity_seleccionDatos extends AppCompatActivity {
         for (int ident: idImagen) {
             Log.d("MainActivity", "id: " + ident);
         }
-        Intent intent = new Intent(activity_seleccionDatos.this,activity_home.class);
+
+        Intent intent = new Intent(activity_seleccionDatos.this,activity_addCar.class);
 
         Bundle extras = new Bundle();
         extras.putIntegerArrayList("lista", (ArrayList<Integer>) idImagen);
         //extras.putString("ultVez", ultVez);
-
+        extras.putSerializable("claseCoche", coche);
+        //intent.putExtras("claseCoche", coche);
         intent.putExtras(extras);
         startActivity(intent);
 

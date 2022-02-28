@@ -1,4 +1,4 @@
-package xyz.hannah.hannahapp;
+package xyz.hannah.hannahapp.ClasesAyuda;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class MyAdapterRecyclerView extends RecyclerView.Adapter<MyAdapterRecyclerView.MyViewHolder> {
-    String data1[];
-    ArrayList<Integer> images;
-    Context context;
+import xyz.hannah.hannahapp.R;
 
-    public  MyAdapterRecyclerView(Context ct, String s1[], ArrayList<Integer> images){
+public class AdapterRVSelection extends RecyclerView.Adapter<AdapterRVSelection.MyViewHolderSelection> {
+    private String data1[];
+    private  ArrayList<Integer> images;
+    private  Context context;
+
+    public AdapterRVSelection(Context ct, String s1[], ArrayList<Integer> images){
         context = ct;
         data1 = s1;
         this.images = images;
@@ -27,15 +29,15 @@ public class MyAdapterRecyclerView extends RecyclerView.Adapter<MyAdapterRecycle
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolderSelection onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.content_selection, parent, false);
 
-        return new MyViewHolder(view);
+        return new MyViewHolderSelection(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolderSelection holder, int position) {
         holder.myText.setText(data1[position]);
         holder.myImage.setImageResource(images.get(position));
 
@@ -46,19 +48,13 @@ public class MyAdapterRecyclerView extends RecyclerView.Adapter<MyAdapterRecycle
         return images.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolderSelection extends RecyclerView.ViewHolder{
         TextView myText;
         ImageView myImage;
 
-        public ImageView getMyImage() {
-            return myImage;
-        }
 
-        public void setMyImage(ImageView myImage) {
-            this.myImage = myImage;
-        }
 
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolderSelection(@NonNull View itemView) {
             super(itemView);
             myText = itemView.findViewById(R.id.textPart);
             myImage = itemView.findViewById(R.id.imgPart);

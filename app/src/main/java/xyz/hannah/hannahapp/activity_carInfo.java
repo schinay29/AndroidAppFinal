@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import xyz.hannah.hannahapp.ClasesAyuda.Coche;
+
 public class activity_carInfo extends AppCompatActivity {
-    EditText mCoche, kCoche;
+    EditText mModeloCoche, mKilometroCoche, mMatriculaCoche ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,20 +19,24 @@ public class activity_carInfo extends AppCompatActivity {
     }
 
 
+    /**
+     * método que obtiene los datos introducidos en los campos y crea un objeto de tipo coche
+     * luego los envia a activity_addCar
+     * @param view
+     */
     public void enviarDatos(View view) {
-        mCoche = findViewById(R.id.cpModeloCoche);
-        kCoche = findViewById(R.id.cpKilometroCoche);
+        mMatriculaCoche = findViewById(R.id.cpMatriculaCoche);
+        mModeloCoche = findViewById(R.id.cpModeloCoche);
+        mKilometroCoche = findViewById(R.id.cpKilometroCoche);
 
-        String modelo = String.valueOf(mCoche.getText());
-        double kilometro = Double.parseDouble(String.valueOf(kCoche.getText()));
+        String matricula = String.valueOf(mMatriculaCoche.getText());
+        String modelo = String.valueOf(mModeloCoche.getText());
+        double kilometros = Double.parseDouble(String.valueOf(mKilometroCoche.getText()));
 
-        Bundle extras = new Bundle();
+        Coche coche = new Coche(matricula, modelo, kilometros);
 
-        extras.putDouble("kilometro", kilometro);
-        extras.putString("modelo", modelo);
-
-        Intent intent = new Intent(activity_carInfo.this, activity_addCar.class);
-        intent.putExtras(extras);
+        Intent intent = new Intent(activity_carInfo.this, activity_seleccionDatos.class);
+        intent.putExtra("claseCoche", coche);
 
         startActivity(intent);
 

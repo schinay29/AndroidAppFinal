@@ -366,7 +366,7 @@
         app:srcCompat="@mipmap/ic_coche1_foreground" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/recyclerViewHome"
         android:layout_width="409dp"
         android:layout_height="324dp"
         android:orientation="horizontal"

@@ -1,591 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".activity_addCar">
 
 
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        android:text="Introduce los datos"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewAddCar"
+        android:layout_width="match_parent"
+        android:layout_height="668dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Partes del coche"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_gravity="center"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-
-        <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/background_content_form"
-        android:elevation="5dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:gravity="center"
         android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2">
+        android:paddingVertical="15dp">
 
-
-            <ImageView
-                android:id="@+id/rueda"
-                android:layout_width="116dp"
-                android:layout_height="134dp"
-                android:layout_marginHorizontal="12dp"
-                android:layout_marginVertical="4dp"
-                android:contentDescription="@string/rueda"
-                android:src="@mipmap/ic_rueda" />
-
-        <TextView
-            android:id="@+id/modelo_rueda"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_volver"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/rueda"
-            android:text="Modelo"
-            android:textSize="15sp" />
+            android:layout_gravity="start"
+            android:layout_marginHorizontal="35dp"
+            android:gravity="center"
+            android:onClick="volver"
+            android:text="VOLVER" />
 
-        <TextView
-            android:id="@+id/ultVez_rueda"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_siguiente"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cp_modeloRueda"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/rueda"
-            android:text="Ultima vez cambiado:"
-            android:textSize="15sp" />
+            android:layout_gravity="left"
+            android:layout_marginHorizontal="35dp"
+            android:onClick="añadirDatos"
+            android:text="SIGUIENTE" />
 
-        <EditText
-            android:id="@+id/cp_modeloRueda"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_below="@+id/modelo_rueda"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_toEndOf="@+id/rueda"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_rueda" />
-
-        <EditText
-            android:id="@+id/cp_ultVezRueda"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_below="@+id/ultVez_rueda"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/rueda"
-            android:ems="10"
-            android:hint="dd/mm/aa"
-            android:inputType="date"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_rueda" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/background_content_form"
-        android:elevation="5dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
-
-
-        <ImageView
-            android:id="@+id/correaDistribucion"
-            android:layout_width="116dp"
-            android:layout_height="134dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="4dp"
-            android:contentDescription="@string/rueda"
-            android:src="@mipmap/ic_correoa_de_distribucion" />
-
-        <TextView
-            android:id="@+id/modelo_cDistribucion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/correaDistribucion"
-            android:text="Modelo"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/ultVez_cDistribucion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cp_modelocDistribucion"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/correaDistribucion"
-            android:text="Ultima vez cambiado:"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/cp_modelocDistribucion"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/modelo_cDistribucion"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_toEndOf="@+id/correaDistribucion"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_cDistribucion" />
-
-        <EditText
-            android:id="@+id/cp_ultVezcDistribucion"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_below="@+id/ultVez_cDistribucion"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/correaDistribucion"
-            android:ems="10"
-            android:hint="dd/mm/aa"
-            android:inputType="date"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_cDistribucion" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/background_content_form"
-        android:elevation="5dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.02"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2">
-
-
-        <ImageView
-            android:id="@+id/bateria"
-            android:layout_width="116dp"
-            android:layout_height="134dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="4dp"
-            android:contentDescription="@string/rueda"
-            android:src="@mipmap/ic_bateria" />
-
-        <TextView
-            android:id="@+id/modelo_bateria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/bateria"
-            android:text="Modelo"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/ultVez_bateria"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cp_modeloBateria"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/bateria"
-            android:text="Ultima vez cambiado:"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/cp_modeloBateria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/modelo_bateria"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_toEndOf="@+id/bateria"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_bateria" />
-
-        <EditText
-            android:id="@+id/cp_ultVezBateria"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_below="@+id/ultVez_bateria"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/bateria"
-            android:ems="10"
-            android:hint="dd/mm/aa"
-            android:inputType="date"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_bateria" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout4"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/background_content_form"
-        android:elevation="5dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout3">
-
-
-        <ImageView
-            android:id="@+id/frenos"
-            android:layout_width="116dp"
-            android:layout_height="134dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="4dp"
-            android:contentDescription="@string/frenos"
-            android:src="@mipmap/ic_frenos" />
-
-        <TextView
-            android:id="@+id/modelo_frenos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/frenos"
-            android:text="Modelo"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/ultVez_frenos"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cp_modeloFrenos"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/frenos"
-            android:text="Ultima vez cambiado:"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/cp_modeloFrenos"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/modelo_frenos"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_toEndOf="@+id/frenos"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_frenos" />
-
-        <EditText
-            android:id="@+id/cp_ultVezFrenos"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_below="@+id/ultVez_frenos"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/frenos"
-            android:ems="10"
-            android:hint="dd/mm/aa"
-            android:inputType="date"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_frenos" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout5"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/background_content_form"
-        android:elevation="5dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout4">
-
-
-        <ImageView
-            android:id="@+id/luces"
-            android:layout_width="116dp"
-            android:layout_height="134dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="4dp"
-            android:contentDescription="@string/luces"
-            android:src="@mipmap/ic_luces" />
-
-        <TextView
-            android:id="@+id/modelo_luces"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/luces"
-            android:text="Modelo"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/ultVez_luces"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cp_modeloLuces"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/luces"
-            android:text="Ultima vez cambiado:"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/cp_modeloLuces"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/modelo_luces"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_toEndOf="@+id/luces"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_luces" />
-
-        <EditText
-            android:id="@+id/cp_ultVezLuces"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_below="@+id/ultVez_luces"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/luces"
-            android:ems="10"
-            android:hint="dd/mm/aa"
-            android:inputType="date"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_luces" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout6"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/background_content_form"
-        android:elevation="5dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout5">
-
-
-        <ImageView
-            android:id="@+id/catalizador"
-            android:layout_width="116dp"
-            android:layout_height="134dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="4dp"
-            android:contentDescription="@string/catalizador"
-            android:src="@mipmap/ic_catalizador" />
-
-        <TextView
-            android:id="@+id/modelo_catalizador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/catalizador"
-            android:text="Modelo"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/ultVez_catalizador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cp_modeloCatalizador"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/catalizador"
-            android:text="Ultima vez cambiado:"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/cp_modeloCatalizador"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/modelo_catalizador"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_toEndOf="@+id/catalizador"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_catalizador" />
-
-        <EditText
-            android:id="@+id/cp_ultVezCatalizador"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_below="@+id/ultVez_catalizador"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/catalizador"
-            android:ems="10"
-            android:hint="dd/mm/aa"
-            android:inputType="date"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_catalizador" />
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/background_content_form"
-        android:elevation="5dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout6">
-
-
-        <ImageView
-            android:id="@+id/amortiguador"
-            android:layout_width="116dp"
-            android:layout_height="134dp"
-            android:layout_marginHorizontal="12dp"
-            android:layout_marginVertical="4dp"
-            android:contentDescription="@string/amortiguador"
-            android:src="@mipmap/ic_amortiguador" />
-
-        <TextView
-            android:id="@+id/modelo_amortiguador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/amortiguador"
-            android:text="Modelo"
-            android:textSize="15sp" />
-
-        <TextView
-            android:id="@+id/ultVez_amortiguador"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/cp_modeloAmortiguador"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="9dp"
-            android:layout_toEndOf="@+id/amortiguador"
-            android:text="Ultima vez cambiado:"
-            android:textSize="15sp" />
-
-        <EditText
-            android:id="@+id/cp_modeloAmortiguador"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/modelo_amortiguador"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_toEndOf="@+id/amortiguador"
-            android:ems="10"
-            android:inputType="text"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/modelo_amortiguador" />
-
-        <EditText
-            android:id="@+id/cp_ultVezAmortiguador"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_below="@+id/ultVez_amortiguador"
-            android:layout_marginStart="3dp"
-            android:layout_marginTop="-9dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toEndOf="@+id/amortiguador"
-            android:ems="10"
-            android:hint="dd/mm/aa"
-            android:inputType="date"
-            android:textSize="14sp"
-            app:layout_constraintBaseline_toBaselineOf="@+id/ultVez_amortiguador" />
-    </RelativeLayout>
-
-    <Button
-        android:id="@+id/btn_siguiente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:onClick="añadirDatos"
-        android:text="SIGUIENTE"
-        android:layout_gravity="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout7" />
 
     </LinearLayout>
 
-</ScrollView>
+</LinearLayout>

@@ -5,19 +5,16 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -39,6 +36,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -52,6 +50,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+
+import xyz.hannah.hannahapp.ClasesAyuda.Coche;
+import xyz.hannah.hannahapp.ClasesAyuda.AdapterRVSelection;
 
 public class activity_home extends AppCompatActivity {
 
@@ -68,11 +69,9 @@ public class activity_home extends AppCompatActivity {
     /**
      * declarando variables para vista
      */
-    RecyclerView recyclerView;
-    String s1[];
-    ArrayList<Integer> images;
-    //ArrayList<Integer> images ={R.mipmap.ic_aceite_lubricante, R.mipmap.ic_amortiguador, R.mipmap.ic_bateria, R.mipmap.ic_catalizador, R.mipmap.ic_rueda,
-      //      R.mipmap.ic_correoa_de_distribucion, R.mipmap.ic_filtro, R.mipmap.ic_frenos, R.mipmap.ic_luces};
+    private RecyclerView recyclerView;
+    private String nombrePartOfCar[];
+    private List<Integer> idImagen;
 
     /**
      * API google
@@ -150,16 +149,27 @@ public class activity_home extends AppCompatActivity {
          * creando vista inicial
          */
 
+        idImagen = new ArrayList<Integer>();
         Intent intent = getIntent();
 
         Bundle parametros = this.getIntent().getExtras();
-        images = parametros.getIntegerArrayList("lista");
+        if(!parametros.isEmpty()){
+            idImagen = parametros.getIntegerArrayList("lista");
+
+            // obtengo el objeto coche enviado desde la actividad anterior
+            // Coche coche = (Coche) getIntent().getSerializableExtra("claseCoche");
+            Coche coche = (Coche) parametros.getSerializable("claseCoche");
+        }
+
+
 
         //String ultVez = parametros.getString("ultVez");
-        s1 = getResources().getStringArray(R.array.partes_coche);
-        recyclerView = findViewById(R.id.recyclerView);
+        // obtengo el array de strings de strings.xml y lo guardo en nombrePartOfCar
+        // inicializo el recyclerView
+        nombrePartOfCar = getResources().getStringArray(R.array.partes_coche);
+        recyclerView = findViewById(R.id.recyclerViewHome);
 
-        MyAdapterRecyclerView adapter = new MyAdapterRecyclerView(this, s1, images);
+        AdapterRVSelection adapter = new AdapterRVSelection(this, nombrePartOfCar, (ArrayList<Integer>) idImagen);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -285,6 +295,9 @@ public class activity_home extends AppCompatActivity {
 
     public void showDetails(View view) {
 
+        Toast.makeText(this, "id: " + view.getId(), Toast.LENGTH_SHORT).show();
+
+        /**
         imagen = findViewById(view.getId());
         linearLayout = (LinearLayout)imagen.getParent();
         nombre = findViewById(linearLayout.getChildAt(1).getId());
@@ -358,6 +371,7 @@ public class activity_home extends AppCompatActivity {
 
         intent.putExtras(extras);
         startActivity(intent);
+        */
 
     }
 

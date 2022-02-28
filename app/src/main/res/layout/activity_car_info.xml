@@ -15,10 +15,50 @@
         android:background="@drawable/background_content_form"
         android:elevation="5dp"
         android:orientation="horizontal"
+        android:paddingBottom="22dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/cpKilometroCoche"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cpModeloCoche"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="37dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/cpModeloCoche"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtModelo"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="32dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/txtKilometro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/cpModeloCoche"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="14dp"
+            android:text="Kilometraje"
+            android:textSize="16sp" />
 
         <TextView
             android:id="@+id/txtAñadirCoche"
@@ -33,21 +73,21 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/txtModelo"
+            android:id="@+id/txtMatricula"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/txtAñadirCoche"
             android:layout_alignParentStart="true"
             android:layout_marginStart="32dp"
             android:layout_marginTop="16dp"
-            android:text="Modelo"
+            android:text="Matricula"
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/cpModeloCoche"
+            android:id="@+id/cpMatriculaCoche"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/txtModelo"
+            android:layout_below="@+id/txtMatricula"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_marginStart="32dp"
@@ -57,39 +97,27 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/txtKilometro"
+            android:id="@+id/txtModelo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cpModeloCoche"
+            android:layout_below="@+id/cpMatriculaCoche"
             android:layout_alignParentStart="true"
             android:layout_marginStart="32dp"
             android:layout_marginTop="12dp"
-            android:text="Kilometraje"
+            android:text="Modelo"
             android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/cpKilometroCoche"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/txtKilometro"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="32dp"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="14sp" />
 
         <Button
             android:id="@+id/btn_continuar"
-            android:layout_width="wrap_content"
+            android:layout_width="125dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/cpKilometroCoche"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginStart="95dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="95dp"
             android:onClick="enviarDatos"
             android:text="Continuar" />
     </RelativeLayout>

@@ -1,8 +1,9 @@
 package xyz.hannah.hannahapp.ClasesAyuda;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Coche {
+public class Coche implements Serializable {
     private String matricula;
     private String modelo;
     private double kilometros;
