@@ -70,7 +70,7 @@ public class activity_home extends AppCompatActivity {
     BottomNavigationView bottomNavigation;
     private String texto, modelo, ultVez, modeloCoche;
     RelativeLayout mNotificacion;
-
+    List<PlantillaPartOfCar> partesCoche = new ArrayList<PlantillaPartOfCar>();
 
 
     /**
@@ -105,6 +105,7 @@ public class activity_home extends AppCompatActivity {
 
     /**
      * método que devuelve el tipo de actividad detectada
+     *
      * @param activity
      * @return
      */
@@ -123,6 +124,7 @@ public class activity_home extends AppCompatActivity {
 
     /**
      * método que devuelve el estado de la actividad (si ya termino, empezó o ninguna)
+     *
      * @param transitionType
      * @return
      */
@@ -157,26 +159,20 @@ public class activity_home extends AppCompatActivity {
          */
 
 
-        Bundle parametros;
-        if((parametros = this.getIntent().getExtras()) !=null){
-            if(!parametros.isEmpty()){
-                // obtengo el objeto coche enviado desde la actividad anterior
-                // Coche coche = (Coche) getIntent().getSerializableExtra("claseCoche");
-                coche = (Coche) parametros.getSerializable("claseCoche");
-            }
-        }
-
-
-
+        // obtengo el objeto coche enviado desde la actividad anterior
+        Coche coche = (Coche) getIntent().getSerializableExtra("claseCoche");
+        partesCoche = coche.getPartesDelCoche();
+        Log.d(TAG, "coche bbdd :" + coche.getPartesDelCoche().size());
 
         //String ultVez = parametros.getString("ultVez");
         // inicializo el recyclerView
         recyclerView = findViewById(R.id.recyclerViewHome);
 
-        AdapterRVSelection adapter = new AdapterRVSelection(this, (ArrayList<PlantillaPartOfCar>) coche.getPartesDelCoche());
+        //Log.d(TAG, "oncreate :" + coche.getPartesDelCoche().size());
+
+        AdapterRVSelection adapter = new AdapterRVSelection(this, partesCoche);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
 
 
         // inicializa el seguimiento de la actividad a false
@@ -207,7 +203,7 @@ public class activity_home extends AppCompatActivity {
                 .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_ENTER)
                 .build());
 
-        transitions.add( new ActivityTransition.Builder()
+        transitions.add(new ActivityTransition.Builder()
                 .setActivityType(DetectedActivity.IN_VEHICLE)
                 .setActivityTransition(ActivityTransition.ACTIVITY_TRANSITION_EXIT)
                 .build());
@@ -232,8 +228,8 @@ public class activity_home extends AppCompatActivity {
         docRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-                mModelo.setText("MODELO: "+  value.getString("Modelo"));
-                mKilometros.setText("KILOMETROS: "+ value.getString("Kilometros") + "km");
+                mModelo.setText("MODELO: " + value.getString("Modelo"));
+                mKilometros.setText("KILOMETROS: " + value.getString("Kilometros") + "km");
 
             }
         });
@@ -242,14 +238,14 @@ public class activity_home extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Intent intent;
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.nav_home:
                         //mModelo.setText("MODELO: "+ modeloCoche );
                         //mKilometros.setText("KILOMETROS: "+ kilometroCoche + "km");
                         break;
 
                     case R.id.nav_add:
-                        intent = new Intent(activity_home.this,Pop_up.class);
+                        intent = new Intent(activity_home.this, Pop_up.class);
 
                         Bundle extras = new Bundle();
                         extras.putInt("imagen", R.mipmap.ic_coche0_foreground);
@@ -274,7 +270,7 @@ public class activity_home extends AppCompatActivity {
     }
 
 
-    private String obtenerModelo(String nombreParte){
+    private String obtenerModelo(String nombreParte) {
         //se situa en el documento
         DocumentReference docRef = myStore.collection("usuarios").document(idUsuario);
         // obtine los valores de la BBDD
@@ -291,22 +287,21 @@ public class activity_home extends AppCompatActivity {
     }
 
 
-    private String obtenerUltVez(String nombreParte){
+    private String obtenerUltVez(String nombreParte) {
         return null;
     }
-
 
 
     public void showDetails(View view) {
 
         Toast.makeText(this, "id: " + view.getId(), Toast.LENGTH_SHORT).show();
 
-        for (PlantillaPartOfCar p: coche.getPartesDelCoche()) {
+        for (PlantillaPartOfCar p : partesCoche) {
             if (p.getId() == view.getId()) {
 
                 Log.d(TAG, "son iguales");
 
-                Intent intent = new Intent(activity_home.this,Pop_up.class);
+                Intent intent = new Intent(activity_home.this, Pop_up.class);
                 Toast.makeText(this, modelo, Toast.LENGTH_SHORT).show();
                 intent.putExtra("PlantillaPartOfCar", p);
                 startActivity(intent);
@@ -318,7 +313,6 @@ public class activity_home extends AppCompatActivity {
 
     /**
      * API GOOOGLE
-     *
      */
 
     @Override
@@ -417,7 +411,7 @@ public class activity_home extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         enviarNotificacion("Transitions could not be unregistered: " + e);
-                        Log.e(TAG,"Transitions could not be unregistered: " + e);
+                        Log.e(TAG, "Transitions could not be unregistered: " + e);
                     }
                 });
     }
@@ -442,6 +436,7 @@ public class activity_home extends AppCompatActivity {
 
     /**
      * activa o desactiva el API de transicion y revisa si se tiene los permisos para usarlo
+     *
      * @param view
      */
     public void onClickEnableOrDisableActivityRecognition(View view) {
@@ -471,6 +466,7 @@ public class activity_home extends AppCompatActivity {
 
     /**
      * escribe en un Toast el mensaje que se le pase por parámetro
+     *
      * @param message
      */
     private void enviarNotificacion(@NonNull String message) {
@@ -481,7 +477,6 @@ public class activity_home extends AppCompatActivity {
 
     /**
      * clase que extiende de BroadcastReceiver y escucha cuando una ActivityTransition ocurre
-     *
      */
     public class TransitionsReceiver extends BroadcastReceiver {
 
@@ -514,7 +509,6 @@ public class activity_home extends AppCompatActivity {
             }
         }
     }
-
 
 
 }

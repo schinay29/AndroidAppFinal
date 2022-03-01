@@ -91,8 +91,6 @@ public class activity_profile extends AppCompatActivity {
                 return true;
             }
         });
-
-
         cambiarDatos();
     }
 
@@ -169,4 +167,18 @@ public class activity_profile extends AppCompatActivity {
 
     }
 
+    /**
+     * método para cerrar Sesion
+     * @param view
+     */
+    public void logOut(View view) {
+        // método estático para cerrar sesión
+        FirebaseAuth.getInstance().signOut();
+        // termina la instancia y conexión de FirebaseFirestore
+        FirebaseFirestore.getInstance().terminate();
+
+        // redirigimos a la ventana de login
+        startActivity(new Intent(getApplicationContext(), MainActivity.class));
+
+    }
 }

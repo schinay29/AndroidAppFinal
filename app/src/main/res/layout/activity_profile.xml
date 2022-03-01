@@ -181,5 +181,16 @@
         app:itemIconTint="@drawable/item_selector"
         app:menu="@menu/bottom_menu"/>
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="49dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="28dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cpFechaNacimiento"
+        android:onClick="logOut"
+        app:srcCompat="@android:drawable/ic_lock_power_off" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

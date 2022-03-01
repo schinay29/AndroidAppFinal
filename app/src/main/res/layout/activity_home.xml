@@ -98,244 +98,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-    <HorizontalScrollView
-        android:id="@+id/horizontalScrollView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:scrollbars="none"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                >
-                <ImageView
-                    android:id="@+id/img_rueda"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="3dp"
-                    android:onClick="showDetails"
-                    android:contentDescription="@string/rueda"
-                    android:src="@mipmap/ic_rueda" />
-
-                <TextView
-                    android:id="@+id/txt_rueda"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/rueda"
-                    android:textAlignment="center"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/img_bateria"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="3dp"
-                    android:onClick="showDetails"
-                    android:contentDescription="@string/bateria"
-                    android:src="@mipmap/ic_bateria" />
-                <TextView
-                    android:id="@+id/txt_bateria"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/bateria"
-                    android:textAlignment="center"
-                    android:textSize="12sp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/img_luces"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="3dp"
-                    android:onClick="showDetails"
-                    android:contentDescription="@string/luces"
-                    android:src="@mipmap/ic_luces" />
-                <TextView
-                    android:id="@+id/txt_luces"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/luces"
-                    android:textAlignment="center"
-                    android:textSize="12sp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/img_frenos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="3dp"
-                    android:onClick="showDetails"
-                    android:contentDescription="@string/frenos"
-                    android:src="@mipmap/ic_frenos" />
-                <TextView
-                    android:id="@+id/txt_frenos"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/frenos"
-                    android:textAlignment="center"
-                    android:textSize="12sp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/img_catalizador"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="3dp"
-                    android:onClick="showDetails"
-                    android:contentDescription="@string/catalizador"
-                    android:src="@mipmap/ic_catalizador" />
-                <TextView
-                    android:id="@+id/txt_catalizador"
-                    android:layout_width="98dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/catalizador"
-                    android:textAlignment="center"
-                    android:textSize="12sp" />
-
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/img_amortiguador"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="3dp"
-                    android:onClick="showDetails"
-                    android:contentDescription="@string/amortiguador"
-                    android:src="@mipmap/ic_amortiguador" />
-                <TextView
-                    android:id="@+id/txt_amortiguador"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/amortiguador"
-                    android:textAlignment="center"
-                    android:textSize="12sp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/img_aceite"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="3dp"
-                    android:onClick="showDetails"
-                    android:contentDescription="@string/aceite_lubricante"
-                    android:src="@mipmap/ic_aceite_lubricante" />
-                <TextView
-                    android:id="@+id/txt_aceite"
-                    android:layout_width="98dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/aceite_lubricante"
-                    android:textAlignment="center"
-                    android:textSize="12sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/img_filtro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="3dp"
-                    android:onClick="showDetails"
-                    android:contentDescription="@string/filtro"
-                    android:src="@mipmap/ic_filtro" />
-                <TextView
-                    android:id="@+id/txt_filtro"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/filtro"
-                    android:textAlignment="center"
-                    android:textSize="12sp"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <ImageView
-                    android:id="@+id/img_correa_distribucion"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:onClick="showDetails"
-                    android:layout_marginHorizontal="12dp"
-                    android:layout_marginBottom="3dp"
-                    android:contentDescription="@string/correa_distribucion"
-                    android:src="@mipmap/ic_correoa_de_distribucion" />
-                <TextView
-                    android:id="@+id/txt_correa_distribucion"
-                    android:layout_width="98dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/correa_distribucion"
-                    android:textAlignment="center"
-                    android:textSize="12sp"/>
-            </LinearLayout>
-
-
-
-
-
-
-        </LinearLayout>
-
-
-    </HorizontalScrollView>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav"
@@ -367,21 +129,25 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewHome"
-        android:layout_width="409dp"
-        android:layout_height="324dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_margin="15dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView" />
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
+        android:layout_margin="10dp"
+        android:layout_marginHorizontal="20dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
         app:layout_constraintStart_toStartOf="@+id/bottom_nav"
-        app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerViewHome"
         app:layout_constraintVertical_bias="0.594"
         android:onClick="onClickEnableOrDisableActivityRecognition"/>
 
