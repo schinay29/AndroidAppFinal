@@ -36,12 +36,12 @@ public class activity_seleccionDatos extends AppCompatActivity {
 
     }
 
-
-
-
+    /**
+     * método que guarda en una lista los elementos (Partes del coche) que el usuario seleccione
+     * @param view
+     */
     public void addSelection(View view) {
         cardView = findViewById(view.getId());
-        //cardView.setId();
 
         switch (cardView.getId()){
             case R.id.cardViewAceite:
@@ -80,7 +80,7 @@ public class activity_seleccionDatos extends AppCompatActivity {
                 plantilla = new PlantillaPartOfCar(R.id.plantilla_rueda, R.mipmap.ic_rueda, "ruedas");
                 break;
         }
-
+        // selecciona y deselecciona los cardView
         if(cardView.isChecked()){
             cardView.setChecked(false);
             Log.d("MainActivity", "remove id: " + plantilla.getNombre() + " | " + plantilla.getId());
@@ -91,7 +91,6 @@ public class activity_seleccionDatos extends AppCompatActivity {
                     iter.remove();
                 }
             }
-
         }else{
             cardView.setChecked(true);
             Log.d("MainActivity", "add id: " + plantilla.getNombre() + " | " + plantilla.getId());
@@ -99,21 +98,21 @@ public class activity_seleccionDatos extends AppCompatActivity {
         }
     }
 
+    /**
+     * método que envia la lista de selccion y los envia al intent activity_addCar
+     * @param view
+     */
     public void pulsar(View view) {
         for (PlantillaPartOfCar plant: partesCoche) {
             Log.d("MainActivity", "id: " + plant.getNombre() + " | " + plant.getId());
         }
-
         Intent intent = new Intent(activity_seleccionDatos.this,activity_addCar.class);
 
         Bundle extras = new Bundle();
         extras.putSerializable("lista", (Serializable) partesCoche);
-        //extras.putString("ultVez", ultVez);
         extras.putSerializable("claseCoche", coche);
-        //intent.putExtras("claseCoche", coche);
         intent.putExtras(extras);
         startActivity(intent);
-
 
     }
 }

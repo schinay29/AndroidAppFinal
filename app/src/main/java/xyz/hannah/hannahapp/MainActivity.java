@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         myAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+        // array con los nombres de las partes del coche
         nombres = new String[]{"aceite lubricante", "amortiguador", "bateria", "sistema de escape y catalizador", "filtros",
                 "correa de distribucion", "frenos", "luces", "ruedas"};
 
@@ -68,12 +69,14 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
+                            // obtiene los datos de la BBDD y crea un objeto de tipo coche
                             coche = new Coche(document.getData().get("Matricula").toString(), document.getData().get("Modelo").toString(), Double.parseDouble(document.getData().get("Kilometros").toString()));
                             List<PlantillaPartOfCar> partesCoche = new ArrayList<PlantillaPartOfCar>();
 
                             Log.d("", "DocumentSnapshot data bbdd: " + document.getData().get("Modelo"));
                             for (String valor : nombres) {
                                 try {
+                                    // obtiene los datos de las parte de coches añadidas y los añade a la lista de partes de coche
                                     String modelo = document.getData().get("Modelo " + valor).toString();
                                     int id = Integer.parseInt(document.getData().get("Id " + valor).toString());
                                     int idImagen = Integer.parseInt(document.getData().get("Id Imagen " + valor).toString());
@@ -85,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
                                     Log.d("MainActivity", "oncreate :" + e);
                                 }
                             }
+                            // envia los objetos a la actividad principal
                             coche.setPartesDelCoche(partesCoche);
                             Toast.makeText(MainActivity.this, "Usuario actualmente identificado, redirigiendo...", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(getApplicationContext(), activity_home.class);
@@ -94,7 +98,6 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
 
                             finish();
-
                         } else {
                             Log.d("", "No such document bbdd");
                         }
@@ -103,26 +106,28 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
-
-
-            //myAuth.sendPasswordResetEmail();
         }
-
-
     }
 
+    /** método que envia al registro
+     *
+     * @param view
+     */
     public void onClick(View view) {
         Intent intent = new Intent(MainActivity.this, activity_register.class);
         startActivity(intent);
     }
 
+    /**
+     * método para logearse, comprueba que los datos añadidos sean correctos
+     * @param view
+     */
     public void signIn(View view) {
         //variable para gestionar firebaseAuth
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
         String email = cpEmail.getText().toString();
         String password = cpPassword.getText().toString();
-
 
         if (!email.isEmpty() && !password.isEmpty()) {
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -133,8 +138,6 @@ public class MainActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(MainActivity.this, activity_home.class);
                         startActivity(intent);
-
-
                     }
                 }
             });

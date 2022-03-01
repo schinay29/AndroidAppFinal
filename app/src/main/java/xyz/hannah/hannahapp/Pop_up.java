@@ -20,6 +20,8 @@ import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 
+import java.util.List;
+
 import xyz.hannah.hannahapp.ClasesAyuda.Coche;
 import xyz.hannah.hannahapp.ClasesAyuda.PartOfCar;
 import xyz.hannah.hannahapp.ClasesAyuda.PlantillaPartOfCar;
@@ -31,6 +33,7 @@ public class Pop_up extends AppCompatActivity {
     private TextView mNombre, mText;
     private EditText mModelo, mUltVez;
     private PlantillaPartOfCar partOfCar;
+    Coche coche;
 
 
     @Override
@@ -58,43 +61,74 @@ public class Pop_up extends AppCompatActivity {
 
     }
 
+    /**
+     * método que crea un pop-up personalizado
+     * y recoge los datos para ponerlo en la plantilla
+     */
     private void obtenerDatos(){
+        int idImagen;
+        String nombre, modelo, val;
 
-        // obtengo el objeto coche enviado desde la actividad anterior
-        partOfCar = (PlantillaPartOfCar) getIntent().getSerializableExtra("PlantillaPartOfCar");
+        if(!getIntent().getExtras().isEmpty()) {
+            Bundle parametros = this.getIntent().getExtras();
+            if (parametros.getString("tipo_popup").equals("añadir")) {
+                idImagen = parametros.getInt("imagen");
+                nombre = parametros.getString("nombre");
+                coche = (Coche) parametros.getSerializable("claseCoche");
+                modelo = coche.getModelo();
+                val = coche.getKilometros() + "";
+                mText.setText("Kilometros");
+                mUltVez.setEnabled(true);
+                mImgEdit.setVisibility(View.INVISIBLE);
 
-        if(partOfCar.getIdImagen() == R.mipmap.ic_coche0_foreground){
-            mText.setText("Kilometros");
-            mUltVez.setEnabled(true);
-            mImgEdit.setVisibility(View.INVISIBLE);
-        }else{
-            mText.setText("última revisión");
-            mImgEdit.setVisibility(View.VISIBLE);
+            } else {
+                // obtengo el objeto coche enviado desde la actividad anterior
+                partOfCar = (PlantillaPartOfCar) getIntent().getSerializableExtra("PlantillaPartOfCar");
+
+                mText.setText("última revisión");
+                mImgEdit.setVisibility(View.VISIBLE);
+
+                idImagen = partOfCar.getIdImagen();
+                nombre = partOfCar.getNombre();
+                modelo = partOfCar.getModelo();
+                val = partOfCar.getUltFechaCambio();
+            }
+
+            mImagen.setImageResource(idImagen);
+            mNombre.setText(nombre);
+            mModelo.setText(modelo);
+            mUltVez.setText(val);
         }
-        mImagen.setImageResource(partOfCar.getIdImagen());
-        mNombre.setText(partOfCar.getNombre());
-        mModelo.setText(partOfCar.getModelo());
-        mUltVez.setText(partOfCar.getUltFechaCambio());
-
     }
 
+    /**
+     * método que activa los EditText
+     * @param view
+     */
     public void activarCampos(View view) {
         mModelo.setEnabled(true);
         mUltVez.setEnabled(true);
     }
 
+    /**
+     * método que cierra el pop-up
+     * @param view
+     */
     public void closeLayout(View view) {
         finish();
     }
 
+    /**
+     * método que envia una notificación de revision de acuerdo a los valores añadidos en el kilometraje
+     * @param view
+     */
     public void aceptar(View view) {
-
         String txt_notificacion = "Aún no toca revisión";
 
         if(mText.getText().toString() == "Kilometros"){
             if(!mUltVez.getText().toString().isEmpty()) {
                 int kilometros = Integer.parseInt(mUltVez.getText().toString());
-
+                // guarda el texto en un String de acuerdo al número de kilometros que tenga el coche
                 if (kilometros >= 10000 && kilometros <= 12000) {
                     //revisar neumáticos y aceite del motor
                     txt_notificacion = "revisar neumáticos y aceite del motor\n";
@@ -113,10 +147,10 @@ public class Pop_up extends AppCompatActivity {
                     // el líquido de frenos y del embrague, las bujías de encendido, correa de distribución, el refrigerante del radiador...
                     txt_notificacion = "cambiar el aceite, los filtros de aceite o combustible, las pastillas de freno, el líquido de frenos y del embrague, las bujías de encendido, correa de distribución, el refrigerante del radiador...\n";
                 }
-
             }
 
             Toast.makeText(this, "Información actualizada", Toast.LENGTH_SHORT).show();
+            // genera una notificacion con el mensaje guardado anteriormente
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     CharSequence name = "Notificacion";
                     NotificationChannel notificationChannel = new NotificationChannel("NOTIFICACION", name, NotificationManager.IMPORTANCE_HIGH);
@@ -146,11 +180,6 @@ public class Pop_up extends AppCompatActivity {
                 notificationManagerCompat.notify(0, mBuilder.build());
 
                 finish();
-
-
-
-
-
         }
     }
 }

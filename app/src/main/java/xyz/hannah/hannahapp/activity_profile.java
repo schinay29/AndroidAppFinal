@@ -2,6 +2,7 @@ package xyz.hannah.hannahapp;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,17 +35,20 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-public class activity_profile extends AppCompatActivity {
+import xyz.hannah.hannahapp.ClasesAyuda.Coche;
 
+public class activity_profile extends AppCompatActivity {
+    // variables para la BBDD
     FirebaseAuth myAuth;
     FirebaseFirestore myStore;
     String idUsuario;
     //para guardar imagenes en Firebase
     StorageReference myStorage;
     private ImageView imagen;
+    // menu en la parte baja de la pantalla
     BottomNavigationView bottomNavigation;
-    private TextView mNombre, mKilometros, mModelo;
     private EditText mEmail, mTelefono, mFecha;
+    Coche coche;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,9 +56,6 @@ public class activity_profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
 
         imagen = findViewById(R.id.img_profile);
-        mNombre = findViewById(R.id.userName);
-        mModelo = findViewById(R.id.cocheModelo);
-        mKilometros = findViewById(R.id.cocheKilometro);
         mEmail = findViewById(R.id.cpEmail);
         mTelefono = findViewById(R.id.cpTelefono);
         mFecha = findViewById(R.id.cpFechaNacimiento);
@@ -64,40 +66,42 @@ public class activity_profile extends AppCompatActivity {
         idUsuario = myAuth.getCurrentUser().getUid();
         //instancia el Storage
         myStorage = FirebaseStorage.getInstance().getReference();
-
+        // llama al metodo que carga la imagen guardad en la BBDD
         obtenerImagenEnStorageFierabse();
-
+        // obtiene el objeto de tipo coche pasa por la actividad anterior
+        coche = (Coche) getIntent().getSerializableExtra("claseCoche");
+        // selecciona por defecto el item de perfil del menu
         bottomNavigation.setSelectedItemId(R.id.nav_profile);
+        /**
+         * listener al seleccionar los items del menu, permite navegar entre pantallas
+         */
         bottomNavigation.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
                     case R.id.nav_home:
                         Intent intent = new Intent(activity_profile.this, activity_home.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        Bundle extras = new Bundle();
+                        extras.putSerializable("claseCoche", coche);
+                        intent.putExtras(extras);
                         startActivity(intent);
                         break;
-
-                    case R.id.nav_add:
-                        //startActivity(new Intent(activity_profile.this, activity_home.class));
-                        break;
-
-                    case R.id.nav_profile:
-
-                        break;
                 }
-
                 return true;
             }
         });
         cambiarDatos();
     }
 
-    private void cambiarDatos(){
+    private void cambiarDatos() {
         // método para cambiar los datos del perfil y agregar a la BBDD
     }
 
+    /**
+     * método que permite abrir la galaria para sekeccionar una imagen y cargarla en el perfil
+     * @param view
+     */
     public void changeImg(View view) {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/");
@@ -107,7 +111,7 @@ public class activity_profile extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode == RESULT_OK){
+        if (resultCode == RESULT_OK) {
             Uri path = data.getData();
             imagen.setImageURI(path);
             //llamamos al metodo para subir la imagen a Firebase Storage
@@ -115,7 +119,10 @@ public class activity_profile extends AppCompatActivity {
         }
     }
 
-    // metodo para guardar imagen a Storage Firebase
+    /**
+     * metodo para guardar imagen a Storage Firebase
+     * @param imagenUri
+     */
     private void subirImagenCloudStorageFirebase(Uri imagenUri) {
         // guarda la imagen
         //StorageReference referenciaFichero = myStorage.child("imagen_perfil.jpg");
@@ -134,18 +141,23 @@ public class activity_profile extends AppCompatActivity {
         });
     }
 
+    /**
+     * método que permite al campo EditText estar editable
+     * @param view
+     */
     public void editarCampo(View view) {
         int vista = view.getId();
-
-        if(vista == R.id.editFecha){
+        if (vista == R.id.editFecha) {
             mFecha.setEnabled(true);
-        }else if(vista == R.id.editTelefono){
+        } else if (vista == R.id.editTelefono) {
             mTelefono.setEnabled(true);
         }
-
     }
 
-    public void obtenerImagenEnStorageFierabse(){
+    /**
+     * método que encuentra la imagén de perfil en la BBDD y lo carga en el activity_profile
+     */
+    public void obtenerImagenEnStorageFierabse() {
         //se situa el storage en donde se encuentra la imagen
         StorageReference photoReference = myStorage.child("usuarios/" + idUsuario + "/imagen_perfil.jpg");
         final long ONE_MEGABYTE = 1024 * 1024;
@@ -164,11 +176,11 @@ public class activity_profile extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "No Such file or Path found!!", Toast.LENGTH_LONG).show();
             }
         });
-
     }
 
     /**
      * método para cerrar Sesion
+     *
      * @param view
      */
     public void logOut(View view) {
@@ -179,6 +191,19 @@ public class activity_profile extends AppCompatActivity {
 
         // redirigimos a la ventana de login
         startActivity(new Intent(getApplicationContext(), MainActivity.class));
-
     }
+
+    /**
+     * método que cambia de modo normal a modo noche y viceversa
+     * @param view
+     */
+    public void cambiarModo(View view) {
+        Switch sw = (Switch) view;
+        if (sw.isChecked()) {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        } else {
+            getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+        }
+    }
+
 }

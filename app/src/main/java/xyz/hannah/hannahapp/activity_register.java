@@ -41,11 +41,19 @@ public class activity_register extends AppCompatActivity {
         inicializarFirebase();
     }
 
+    /**
+     * inicializa las variables para la BBDD
+     */
     private void inicializarFirebase(){
         myAuth = FirebaseAuth.getInstance();
         myStore = FirebaseFirestore.getInstance();
     }
 
+    /** método que permite registrar un nuevo usuario
+     * y comprueba que todos los campos estén correctamente rellenados
+     *
+     * @param view
+     */
     public void signUp(View view){
 
         String nombre = txtNombre.getText().toString();
@@ -79,6 +87,7 @@ public class activity_register extends AppCompatActivity {
             txtConfContraseña.setError("La contraseña debe ser igual");
 
         }else{
+            // crea al usuario con email y contraseña
             myAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -111,13 +120,10 @@ public class activity_register extends AppCompatActivity {
 
                     } else {
                         Toast.makeText(activity_register.this,"Se ha producido une error en el proceso de registro.", Toast.LENGTH_SHORT ).show();
-                        //Toast.makeText(activity_register.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-
                     }
                 }
             });
         }
-
     }
 
 

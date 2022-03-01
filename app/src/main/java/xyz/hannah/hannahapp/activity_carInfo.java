@@ -20,7 +20,7 @@ public class activity_carInfo extends AppCompatActivity {
 
 
     /**
-     * método que obtiene los datos introducidos en los campos y crea un objeto de tipo coche
+     * método que obtiene la matricula, modelo y kilometraje del coche y crea un objeto de tipo coche
      * luego los envia a activity_addCar
      * @param view
      */
@@ -34,8 +34,8 @@ public class activity_carInfo extends AppCompatActivity {
         double kilometros = Double.parseDouble(String.valueOf(mKilometroCoche.getText()));
 
         Coche coche = new Coche(matricula, modelo, kilometros);
-
         Intent intent = new Intent(activity_carInfo.this, activity_seleccionDatos.class);
+        // envia el objeto coche a la clase activity_seleccionDatos
         intent.putExtra("claseCoche", coche);
 
         startActivity(intent);

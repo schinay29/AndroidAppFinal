@@ -66,16 +66,10 @@ public class activity_home extends AppCompatActivity {
     String idUsuario;
     private TextView nombre, mModelo, mKilometros;
     private ImageView imagen;
-    private LinearLayout linearLayout;
     BottomNavigationView bottomNavigation;
     private String texto, modelo, ultVez, modeloCoche;
     RelativeLayout mNotificacion;
     List<PlantillaPartOfCar> partesCoche = new ArrayList<PlantillaPartOfCar>();
-
-
-    /**
-     * declarando variables para vista
-     */
     private RecyclerView recyclerView;
     Coche coche;
 
@@ -160,7 +154,7 @@ public class activity_home extends AppCompatActivity {
 
 
         // obtengo el objeto coche enviado desde la actividad anterior
-        Coche coche = (Coche) getIntent().getSerializableExtra("claseCoche");
+        coche = (Coche) getIntent().getSerializableExtra("claseCoche");
         partesCoche = coche.getPartesDelCoche();
         Log.d(TAG, "coche bbdd :" + coche.getPartesDelCoche().size());
 
@@ -223,7 +217,7 @@ public class activity_home extends AppCompatActivity {
          */
 
         //se situa en el documento de FirebaseStorage
-        DocumentReference docRef = myStore.collection("usuarios").document(idUsuario);
+        DocumentReference docRef = myStore.collection(idUsuario).document("Datos Coche");
         // obtine los valores de la BBDD
         docRef.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
@@ -238,27 +232,31 @@ public class activity_home extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Intent intent;
+                Bundle extras;
                 switch (item.getItemId()) {
                     case R.id.nav_home:
-                        //mModelo.setText("MODELO: "+ modeloCoche );
-                        //mKilometros.setText("KILOMETROS: "+ kilometroCoche + "km");
+                        mModelo.setText("MODELO: "+ coche.getModelo() );
+                        mKilometros.setText("KILOMETROS: "+ coche.getKilometros() + "km");
                         break;
 
                     case R.id.nav_add:
                         intent = new Intent(activity_home.this, Pop_up.class);
 
-                        Bundle extras = new Bundle();
+                        extras = new Bundle();
                         extras.putInt("imagen", R.mipmap.ic_coche0_foreground);
                         extras.putString("nombre", "Actualizar Datos");
-                        extras.putString("modelo", modeloCoche);
-                        //extras.putString("ultVez", ultVez);
-
+                        extras.putString("tipo_popup", "añadir");
+                        extras.putSerializable("claseCoche", coche);
                         intent.putExtras(extras);
+                        //extras.putString("ultVez", ultVez);
                         startActivity(intent);
                         break;
 
                     case R.id.nav_profile:
                         intent = new Intent(activity_home.this, activity_profile.class);
+                        extras = new Bundle();
+                        extras.putSerializable("claseCoche", coche);
+                        intent.putExtras(extras);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                         startActivity(intent);
                         break;
@@ -302,8 +300,12 @@ public class activity_home extends AppCompatActivity {
                 Log.d(TAG, "son iguales");
 
                 Intent intent = new Intent(activity_home.this, Pop_up.class);
+                Bundle extras = new Bundle();
+                extras.putSerializable("claseCoche", coche);
+                extras.putString("tipo_popup", "mostrar");
                 Toast.makeText(this, modelo, Toast.LENGTH_SHORT).show();
                 intent.putExtra("PlantillaPartOfCar", p);
+                intent.putExtras(extras);
                 startActivity(intent);
                 break;
             }
