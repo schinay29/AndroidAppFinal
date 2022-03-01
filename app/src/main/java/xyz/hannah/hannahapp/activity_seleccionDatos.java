@@ -34,8 +34,6 @@ public class activity_seleccionDatos extends AppCompatActivity {
         // inicializo el List idImagen que guardará los id de las imagenes seleccionadas
         partesCoche = new ArrayList<PlantillaPartOfCar>();
 
-
-
     }
 
 
@@ -99,8 +97,6 @@ public class activity_seleccionDatos extends AppCompatActivity {
             Log.d("MainActivity", "add id: " + plantilla.getNombre() + " | " + plantilla.getId());
             partesCoche.add(plantilla);
         }
-
-
     }
 
     public void pulsar(View view) {

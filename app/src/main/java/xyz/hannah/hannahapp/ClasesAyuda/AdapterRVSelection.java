@@ -52,8 +52,6 @@ public class AdapterRVSelection extends RecyclerView.Adapter<AdapterRVSelection.
         TextView myText;
         ImageView myImage;
 
-
-
         public MyViewHolderSelection(@NonNull View itemView) {
             super(itemView);
             myText = itemView.findViewById(R.id.textPart);

@@ -21,6 +21,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -71,11 +72,13 @@ public class activity_home extends AppCompatActivity {
     RelativeLayout mNotificacion;
 
 
+
     /**
      * declarando variables para vista
      */
     private RecyclerView recyclerView;
-    private List<PlantillaPartOfCar> partesCoche;
+    Coche coche;
+
 
     /**
      * API google
@@ -153,16 +156,13 @@ public class activity_home extends AppCompatActivity {
          * creando vista inicial
          */
 
-        partesCoche = new ArrayList<PlantillaPartOfCar>();
 
         Bundle parametros;
         if((parametros = this.getIntent().getExtras()) !=null){
             if(!parametros.isEmpty()){
-                partesCoche = (List<PlantillaPartOfCar>) parametros.getSerializable("lista");
-
                 // obtengo el objeto coche enviado desde la actividad anterior
                 // Coche coche = (Coche) getIntent().getSerializableExtra("claseCoche");
-                Coche coche = (Coche) parametros.getSerializable("claseCoche");
+                coche = (Coche) parametros.getSerializable("claseCoche");
             }
         }
 
@@ -173,7 +173,7 @@ public class activity_home extends AppCompatActivity {
         // inicializo el recyclerView
         recyclerView = findViewById(R.id.recyclerViewHome);
 
-        AdapterRVSelection adapter = new AdapterRVSelection(this, (ArrayList<PlantillaPartOfCar>) partesCoche);
+        AdapterRVSelection adapter = new AdapterRVSelection(this, (ArrayList<PlantillaPartOfCar>) coche.getPartesDelCoche());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
 
@@ -301,7 +301,7 @@ public class activity_home extends AppCompatActivity {
 
         Toast.makeText(this, "id: " + view.getId(), Toast.LENGTH_SHORT).show();
 
-        for (PlantillaPartOfCar p: partesCoche) {
+        for (PlantillaPartOfCar p: coche.getPartesDelCoche()) {
             if (p.getId() == view.getId()) {
 
                 Log.d(TAG, "son iguales");

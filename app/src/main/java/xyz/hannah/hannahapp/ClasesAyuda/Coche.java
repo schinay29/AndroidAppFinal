@@ -7,7 +7,7 @@ public class Coche implements Serializable {
     private String matricula;
     private String modelo;
     private double kilometros;
-    private List<PartOfCar> partesDelCoche;
+    private List<PlantillaPartOfCar> partesDelCoche;
 
     public Coche() {
     }
@@ -18,18 +18,18 @@ public class Coche implements Serializable {
         this.kilometros = kilometros;
     }
 
-    public Coche(String matricula, String modelo, double kilometros, List<PartOfCar> partesDelCoche) {
+    public Coche(String matricula, String modelo, double kilometros, List<PlantillaPartOfCar> partesDelCoche) {
         this.matricula = matricula;
         this.modelo = modelo;
         this.kilometros = kilometros;
         this.partesDelCoche = partesDelCoche;
     }
 
-    public List<PartOfCar> getPartesDelCoche() {
+    public List<PlantillaPartOfCar> getPartesDelCoche() {
         return partesDelCoche;
     }
 
-    public void setPartesDelCoche(List<PartOfCar> partesDelCoche) {
+    public void setPartesDelCoche(List<PlantillaPartOfCar> partesDelCoche) {
         this.partesDelCoche = partesDelCoche;
     }
 

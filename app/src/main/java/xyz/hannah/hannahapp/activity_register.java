@@ -88,7 +88,7 @@ public class activity_register extends AppCompatActivity {
                         idUsuario = myAuth.getCurrentUser().getUid();
 
                         //crea la colección y el documento de la BBDD
-                        DocumentReference docRef = myStore.collection("usuarios").document(idUsuario);
+                        DocumentReference docRef = myStore.collection(idUsuario).document("Datos Personales");
 
                         HashMap<String, String> infoUsuario = new HashMap<>();
                         infoUsuario.put("Nombre", nombre);

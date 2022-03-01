@@ -1,23 +1,34 @@
 package xyz.hannah.hannahapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import xyz.hannah.hannahapp.ClasesAyuda.AdapterRVInfo;
+import xyz.hannah.hannahapp.ClasesAyuda.AdapterRVSelection;
 import xyz.hannah.hannahapp.ClasesAyuda.Coche;
 import xyz.hannah.hannahapp.ClasesAyuda.PlantillaPartOfCar;
 
@@ -26,18 +37,16 @@ public class activity_addCar extends AppCompatActivity {
     FirebaseAuth myAuth;
     FirebaseFirestore myStore;
     String idUsuario;
-    EditText mRueda, mCDistribucion, mBateria, mFrenos, mLuces, mCatalizador, mAmortiguador;
-    EditText dRueda, dCDistribucion, dBateria, dFrenos, dLuces, dCatalizador, dAmortiguador;
-    String modelo;
-    double kilometro;
 
+
+    AdapterRVInfo adapter;
     /**
      * declarando variables para vista
      */
     private RecyclerView recyclerView;
     private List<PlantillaPartOfCar> partesCoche;
-
     private Coche coche;
+
 
 
     @Override
@@ -63,7 +72,7 @@ public class activity_addCar extends AppCompatActivity {
         // inicializo el recyclerView
         recyclerView = findViewById(R.id.recyclerViewAddCar);
 
-        AdapterRVInfo adapter = new AdapterRVInfo(this, (List<PlantillaPartOfCar>) partesCoche);
+        adapter = new AdapterRVInfo(this, (List<PlantillaPartOfCar>) partesCoche);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
@@ -77,85 +86,53 @@ public class activity_addCar extends AppCompatActivity {
     }
 
     public void añadirDatos(View view) {
+        String[] modelo = adapter.getModelos();
+        String[] ultVez = adapter.getUltVez();
 
-        /**
-         Neumatico neumatico = new Neumatico();
-         neumatico.setModelo(String.valueOf(mRueda.getText()));
-         neumatico.setUltFechaCambio(dRueda.getText().toString());
+        for (int i =0; i<modelo.length; i++){
+            partesCoche.get(i).setModelo(modelo[i]);
+            partesCoche.get(i).setUltFechaCambio(ultVez[i]);
+            Log.d("MainActivity", "en añadir datos :" + modelo[i]);
+            Log.d("MainActivity", "en añadir datos :" + ultVez[i]);
+        }
 
-         Amortiguador amortiguador = new Amortiguador();
-         amortiguador.setModelo(String.valueOf(mAmortiguador.getText()));
-         amortiguador.setUltFechaCambio(dAmortiguador.getText().toString());
+        coche.setPartesDelCoche(partesCoche);
 
-         Frenos frenos = new Frenos();
-         frenos.setModelo(String.valueOf(mFrenos.getText()));
-         frenos.setUltFechaCambio(dFrenos.getText().toString());
+        // añadir datos coche
+        //crea la colección y el documento de la BBDD
+        DocumentReference docRef = myStore.collection(idUsuario).document("Datos Coche");
 
-         Bateria bateria = new Bateria();
-         bateria.setModelo(String.valueOf(mBateria.getText()));
-         bateria.setUltFechaCambio(dBateria.getText().toString());
-
-         SistemaDeEscape sisEscape = new SistemaDeEscape();
-         sisEscape.setModelo(String.valueOf(mCatalizador.getText()));
-         sisEscape.setUltFechaCambio(dCatalizador.getText().toString());
-
-         CorreaDeDistribucion cDistribucion = new CorreaDeDistribucion();
-         cDistribucion.setModelo(String.valueOf(mCDistribucion.getText()));
-         cDistribucion.setUltFechaCambio(dCDistribucion.getText().toString());
-
-         Luces luces = new Luces();
-         luces.setModelo(String.valueOf(mLuces.getText()));
-         luces.setUltFechaCambio(dLuces.getText().toString());
-
-         Coche coche = new Coche();
-         coche.setModelo(modelo);
-         coche.setKilometros(kilometro);
-         coche.setNeumatico(neumatico);
-         coche.setAmortiguador(amortiguador);
-         coche.setFrenos(frenos);
-         coche.setBateria(bateria);
-         coche.setSistemaDeEscape(sisEscape);
-         coche.setCorreaDistribucion(cDistribucion);
-         coche.setLuces(luces);
-
-         //crea la colección y el documento de la BBDD
-         DocumentReference docRef = myStore.collection("usuarios").document(idUsuario);
-
-         HashMap<String, String> infoCoche = new HashMap<>();
-         infoCoche.put("Modelo", coche.getModelo());
-         infoCoche.put("Kilometros", String.valueOf(coche.getKilometros()));
-         infoCoche.put("Neumatico", String.valueOf(coche.getNeumatico().getUltFechaCambio()));
-         infoCoche.put("Amortiguador", String.valueOf(coche.getAmortiguador().getUltFechaCambio()));
-         infoCoche.put("Frenos", String.valueOf(coche.getFrenos().getUltFechaCambio()));
-         infoCoche.put("Bateria", String.valueOf(coche.getBateria().getUltFechaCambio()));
-         infoCoche.put("Sistema de escape", String.valueOf(coche.getSistemaDeEscape().getUltFechaCambio()));
-         infoCoche.put("Correa de distribución", String.valueOf(coche.getCorreaDistribucion().getUltFechaCambio()));
-         infoCoche.put("Luces", String.valueOf(coche.getLuces().getUltFechaCambio()));
-
-
-         //registro de datos del usuario en FirestoreDatabase
-         docRef.set(infoCoche).addOnCompleteListener(new OnCompleteListener<Void>() {
-        @Override public void onComplete(@NonNull Task<Void> task) {
-        if (task.isSuccessful()){
-        Toast.makeText(activity_addCar.this, "Partes del Coche Agregado", Toast.LENGTH_SHORT).show();
-
-        Intent intent =new Intent(activity_addCar.this, activity_home.class);
-        startActivity(intent);
+        HashMap<String, String> infoCoche = new HashMap<>();
+        infoCoche.put("Matricula", coche.getMatricula());
+        infoCoche.put("Modelo", coche.getModelo());
+        infoCoche.put("Kilometros", String.valueOf(coche.getKilometros()));
+        for (PlantillaPartOfCar p: partesCoche) {
+            infoCoche.put("Id " + p.getNombre(), String.valueOf(p.getId()));
+            infoCoche.put("Id Imagen " + p.getNombre(), String.valueOf(p.getIdImagen()));
+            infoCoche.put("Modelo " + p.getNombre(), p.getModelo());
+            infoCoche.put("Ult Vez " + p.getNombre(), p.getUltFechaCambio());
 
         }
-        }
+
+        //registro de datos del usuario en FirestoreDatabase
+        docRef.set(infoCoche).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()){
+                    Toast.makeText(activity_addCar.this, "Coche registrado correctamente.", Toast.LENGTH_SHORT).show();
+                    Intent intent =new Intent(activity_addCar.this, activity_home.class);
+
+                    Bundle extras = new Bundle();
+                    extras.putSerializable("claseCoche", coche);
+                    intent.putExtras(extras);
+                    startActivity(intent);
+
+                }
+            }
         });
-         */
+        // cambiar reglas -> allow read, write: if request.auth != null <-
+        //para tener acceso a la BBDD y poder añadir los datos
 
-        Intent intent =new Intent(activity_addCar.this, activity_home.class);
-
-        Bundle extras = new Bundle();
-        extras.putSerializable("lista", (ArrayList<PlantillaPartOfCar>) partesCoche);
-        //extras.putString("ultVez", ultVez);
-        extras.putSerializable("claseCoche", coche);
-        //intent.putExtras("claseCoche", coche);
-        intent.putExtras(extras);
-        startActivity(intent);
 
     }
 
